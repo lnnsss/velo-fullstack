@@ -1,0 +1,359 @@
+.tovarPage {
+  padding: 80px 0 40px 0;
+  transition: 0.5s;
+}
+.tittle {
+  font-size: 32px;
+  font-weight: 500;
+}
+.leftTxt {
+  text-align: left;
+}
+.pa1 {
+  width: 100%;
+  height: 100%;
+}
+.pa1_container {
+  height: 100%;
+  max-width: var(--maxWidth);
+  margin: 0px auto;
+  padding: 0px 15px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.grid_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+}
+
+/*----tovarHeader---------------------------------*/
+
+.tovar_header {
+  height: 330px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid var(--secondGrey);
+}
+.tovar_header_container {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+  padding: 15px 15px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.tovar_header_background {
+  position: absolute;
+  z-index: 9;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(50%);
+  backdrop-filter: blur(8px);
+}
+.tovar_header_text {
+  margin: 10px 0 0 0;
+  height: 100%;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tovar_cover {
+  user-select: none;
+  border: 1px solid var(--secondGrey);
+}
+.tovar_header_title {
+  font-size: 48px;
+  line-height: 100%;
+}
+.tovar_header_artist {
+  color: var(--lightGrey);
+  font-size: 32px;
+  line-height: 100%;
+}
+.tovar_header_date {
+  color: var(--grey);
+  margin: 0 0 0 0;
+  font-size: 14px;
+  line-height: 100%;
+}
+.tovar_header_button {
+  user-select: none;
+  width: 160px;
+  padding: 10px 0;
+  border: 1px solid var(--white);
+  border-radius: 10px;
+  transition: 0.5s;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.btn_price {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.btn_price::after {
+  margin: 0 0 0 -3px;
+  content: "$";
+}
+.oldPrice {
+  text-decoration: line-through;
+}
+.buyButton {
+  margin: auto 0 10px 0;
+}
+.buyButton:hover {
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+.buyButton:active {
+  transition: 0.2s;
+  background-color: var(--secondRed);
+  color: var(--white);
+}
+.yaButton {
+  margin: 0 0 10px 0;
+}
+.yaButton:hover {
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
+}
+.yaButton:active {
+  transition: 0.2s;
+  background-color: var(--secondYellow);
+  color: var(--white);
+}
+
+/*----tracklist---------------------------------*/
+
+.tracklist {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tracklist > :nth-child(2n + 1) {
+  background-color: var(--thirdGrey);
+}
+.trackNumb {
+  font-size: 12px;
+  color: var(--grey);
+  margin: 0 7px 0 0;
+}
+.track {
+  width: 100%;
+  padding: 10px;
+  text-align-last: left;
+  border-left: 1px solid var(--grey);
+  border-right: 1px solid var(--grey);
+  border-bottom: 1px solid var(--grey);
+  display: flex;
+  align-items: center;
+}
+.trackTitle {
+  width: 100%;
+  font-size: 18px;
+  flex: wrap;
+  text-align: left;
+}
+.emptyTrack {
+  width: 100%;
+  height: 100%;
+  border-left: 1px solid var(--grey);
+  border-right: 1px solid var(--grey);
+  border-bottom: 1px solid var(--grey);
+}
+.track:hover {
+  background-color: var(--secondWhite);
+}
+.feats {
+  font-size: 14px;
+  margin: 0 0 0 5px;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+/*----about---------------------------------*/
+
+.description {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  padding: 10px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 10px;
+  border-right: 1px solid var(--grey);
+  border-bottom: 1px solid var(--grey);
+  text-align: left;
+}
+.description_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.description_container p {
+  width: 100%;
+  font-size: 16px;
+  text-align: justify;
+}
+
+/*----otherCovers---------------------------------*/
+
+.otherCovers {
+  padding: 20px 0 0 0;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  gap: 10px;
+}
+.otherCovers_container {
+  display: flex;
+  align-items: center;
+  gap: 27.5px;
+  flex-wrap: wrap;
+}
+.otherCover {
+  border: 1px solid var(--grey);
+  cursor: pointer;
+  user-select: none;
+}
+.fullScreenBg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 88;
+  width: 100%;
+  height: 100%;
+  background: rgba(42, 42, 42, 0.2);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+.fullScreenCover {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+/*------moreFrom-------------------------------*/
+
+.moreFrom {
+  padding: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  gap: 10px;
+}
+.moreFrom_container {
+  display: flex;
+  align-items: center;
+  gap: 27.5px;
+  flex-wrap: wrap;
+}
+.moreFrom_container > * {
+  border: 1px solid var(--grey);
+  cursor: pointer;
+  user-select: none;
+  transition: 0.5s;
+}
+.moreFrom_container > *:hover {
+  border: 1px solid var(--red);
+}
+
+/*----media---------------------------------*/
+
+@media (max-width: 768px) {
+  .tovarPage {
+    padding: 50px 0 40px 0;
+  }
+  .tovar_header {
+    height: 650px;
+  }
+  .tovar_header_text {
+    text-align: center;
+    align-items: center;
+  }
+  .tovar_header_container {
+    max-width: 300px;
+    flex-direction: column;
+  }
+  .grid_container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .tracklist,
+  .description,
+  .otherCovers {
+    grid-column: 1 / 2;
+  }
+  .tracklist {
+    grid-row: 1 / 2;
+  }
+  .emptyTrack {
+    border-bottom: none;
+  }
+  .description {
+    grid-row: 2 / 3;
+    border-left: 1px solid var(--grey);
+  }
+  .otherCovers {
+    grid-row: 3 / 4;
+    align-items: center;
+  }
+  .moreFrom {
+    text-align: center;
+  }
+}
+
+@media (max-width: 472px) {
+  .otherCovers_container, .moreFrom_container {
+    flex-direction: column;
+  }
+  .fullScreenCover {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/*----nightTheme---------------------------------*/
+.nightTheme {
+  color: var(--white);
+  background-color: var(--secondBlack);
+}
+
+/*----nightTheme--tovar-------------------------------*/
+.nightTheme .tracklist > :nth-child(2n + 1) {
+  background-color: var(--fourthBlack);
+}
+.nightTheme .track:hover {
+  background-color: var(--thirdBlack);
+}
+.nightTheme .itogoPrice {
+  color: var(--white);
+}

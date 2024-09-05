@@ -3,17 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "cd app && next dev",
+    "build": "cd app && next build",
+    "lint": "next lint",
+    "start:frontend": "cd app && next start --port 3000",
+    "start:backend": "cd backend && node server.js",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "dev:frontend": "cd app && next dev",
+    "dev:backend": "cd backend && nodemon server.js",
+    "dev:all": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "concurrently": "^8.2.2",
+    "express": "^4.19.2",
+    "next": "14.2.8",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.8"
+    "react-router-dom": "^6.26.1",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "nodemon": "^3.1.4",
     "postcss": "^8",
     "tailwindcss": "^3.4.1"
   }

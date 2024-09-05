@@ -1,0 +1,308 @@
+.cartPage {
+  min-height: 100vh;
+  padding: 100px 0 0 0;
+  transition: 0.5s;
+}
+.pa1 {
+  width: 100%;
+  min-height: 100vh;
+}
+.pa1_container {
+  min-height: 100vh;
+  max-width: var(--maxWidth);
+  margin: 0px auto;
+  padding: 0px 15px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+._container {
+  max-width: var(--maxWidth);
+  margin: 0px auto;
+  padding: 0px 15px;
+}
+.tittle {
+  font-size: 32px;
+  font-weight: 500;
+}
+.korzina {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 10px 0;
+}
+.korzinaHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 20px 0;
+}
+.clearKorzina {
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--grey);
+}
+.korzinaItem {
+  margin: 10px 0;
+  width: 100%;
+  height: 160px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--grey);
+}
+.korzina_tovar_image_div {
+  width: 20%;
+  display: flex;
+  justify-content: start;
+}
+.korzina_tovar_image {
+  user-select: none;
+  width: 120px;
+  height: 120px;
+}
+.korzina_tovar_title,
+.korzina_tovar_price,
+.korzina_tovar_count {
+  font-size: 24px;
+  font-weight: 700;
+  width: 20%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.korzina_tovar_artist {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--secondGrey);
+  width: 20%;
+  margin: 0 60px 0 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.korzina_tovar_btns {
+  padding: 0 0 0 80px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+.korzina_tovar_fix {
+  user-select: none;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--grey);
+  display: flex;
+  justify-content: end;
+}
+.pusto {
+  float: left;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--secondGrey);
+}
+.buyFooter {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color: var(--white);
+  border: 1px solid var(--grey);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 77;
+  align-items: center;
+  transition: 0.5s;
+}
+.buyFooter_left {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 60px;
+}
+.itogo {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--secondGrey);
+}
+.itogoPrice {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--black);
+}
+.buyFooter_right {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.buyFooter_btn {
+  user-select: none;
+  width: max(40%, 120px);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background-color: var(--green);
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.5s;
+}
+.buyFooter_btn:hover {
+  filter: brightness(120%);
+  transition: 0.4s;
+}
+.buyFooter_btn:active {
+  filter: brightness(80%);
+  transition: 0.1s;
+}
+
+/*----media---------------------------------*/
+
+@media (max-width: 1024px) {
+  .korzinaItem {
+    margin: 10px 0;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--grey);
+  }
+  .korzina_tovar_image_div {
+    width: 20%;
+    display: flex;
+    justify-content: start;
+  }
+  .korzina_tovar_image {
+    user-select: none;
+    width: 80px;
+    height: 80px;
+  }
+  .korzina_tovar_title,
+  .korzina_tovar_price {
+    font-size: 16px;
+    font-weight: 500;
+    width: 20%;
+  }
+  .korzina_tovar_artist {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--secondGrey);
+    width: 20%;
+    margin: 0 60px 0 80px;
+  }
+  .korzina_tovar_btns {
+    float: right;
+  }
+  .korzina_tovar_fix {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cartPage {
+    padding: 70px 0 0 0;
+  }
+  .korzina_tovar_image_div {
+    width: 25%;
+  }
+  .korzina_tovar_title,
+  .korzina_tovar_price {
+    width: 25%;
+  }
+  .korzina_tovar_artist {
+    display: none;
+    width: 25%;
+  }
+  .korzina_tovar_btns {
+    width: 25%;
+    padding: 0 0 0 60px;
+  }
+  .korzina_tovar_fix {
+    font-size: 18px;
+  }
+  .korzinaCounter.active {
+    top: 5px;
+    left: 125px;
+  }
+  .buyFooter_left {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 472px) {
+  .korzina_tovar_image_div {
+    width: 30%;
+  }
+  .korzina_tovar_title,
+  .korzina_tovar_count {
+    width: 30%;
+    font-size: 14px;
+  }
+  .korzina_tovar_price {
+    width: 20%;
+    font-size: 14px;
+  }
+  .korzina_tovar_artist {
+    display: none;
+    width: 30%;
+  }
+  .korzina_tovar_btns {
+    width: 20%;
+    padding: 0 0 0 0;
+  }
+  .korzina_tovar_fix {
+    font-size: 12px;
+  }
+  .korzinaCounter.active {
+    right: 20%;
+  }
+  .buyFooter {
+    height: 80px;
+  }
+  .buyFooter_left {
+    gap: 20px;
+  }
+  .itogo,
+  .itogoPrice {
+    font-size: 18px;
+  }
+  .buyFooter_btn {
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+/*----nightTheme---------------------------------*/
+.nightTheme {
+  color: var(--white);
+  background-color: var(--secondBlack);
+}
+
+/*----nightTheme--korzina-------------------------------*/
+.nightTheme .buyFooter {
+  background-color: var(--secondBlack);
+  border: 1px solid var(--grey);
+  border-bottom: none;
+}
+.nightTheme .buyFooter_btn {
+  background-color: var(--red);
+}
+.nightTheme .itogoPrice {
+  color: var(--white);
+}

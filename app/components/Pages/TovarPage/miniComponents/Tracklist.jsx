@@ -2,11 +2,11 @@ import s from "./../TovarPage.module.css";
 
 export function Tracklist({ tovar }) {
   // Треклист товара
-  const thisTracklist = tovar.trackList;
-  const tracklistArray = Object.entries(thisTracklist);
-  const displayTracks = tracklistArray.map(([key, value], i) => (
-    <Track key={i} title={key} feats={value} numb={i + 1} />
-  ));
+const thisTracklist = tovar && tovar.trackList ? tovar.trackList : []; // Проверка на наличие tovar
+
+const displayTracks = thisTracklist.map((track, i) => (
+  <Track key={track.trackTitle} title={track.trackTitle} feats={track.feats} numb={i + 1} />
+));
 
   return (
     <div className={s.tracklist}>

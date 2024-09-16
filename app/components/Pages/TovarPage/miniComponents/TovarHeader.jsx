@@ -10,7 +10,7 @@ export function TovarHeader({ tovar, handleAddToCart }) {
       <div
         className={s.tovar_header_background}
         style={{
-          backgroundImage: `url(${tovar.img.cover})`,
+          backgroundImage: `url(${tovar.img[0]})`,
         }}
       ></div>
       <div className={s.tovar_header_container}>
@@ -23,7 +23,7 @@ export function TovarHeader({ tovar, handleAddToCart }) {
               isFullScreen ? s.fullScreenCover : ""
             }`}
             alt="cover"
-            src={tovar.img.cover}
+            src={tovar.img[0]}
             width={isFullScreen ? 520 : 300}
             height={isFullScreen ? 520 : 300}
           />

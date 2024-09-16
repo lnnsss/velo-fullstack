@@ -1,7 +1,7 @@
 import s from "./../CatalogPage.module.css";
 import { TovarCard } from "./TovarCard";
 import { useEffect, useState } from "react";
-import {discount, langCondition, priceCondition} from "../../../constants";
+import {discount, langCondition, priceCondition, tovarListURL} from "../../../constants";
 
 export function Tovars({ activeFilter, inputValue }) {
     const [finalTovarList, setFinalTovarList] = useState([]);
@@ -12,7 +12,7 @@ export function Tovars({ activeFilter, inputValue }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3001/tovarList');
+                const response = await fetch(tovarListURL);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -75,7 +75,7 @@ export function Tovars({ activeFilter, inputValue }) {
     }, [isLoaded, finalTovarList, activeFilter, inputValue]);
 
     if (!isLoaded) {
-        return <span className={s.isNotItems}>Загрузка...</span>;
+        return <div className={s.tovars_container}><span className={s.isNotItems}>Загрузка...</span></div>;
     }
 
     return (
@@ -84,14 +84,14 @@ export function Tovars({ activeFilter, inputValue }) {
                 <div className={s.tovars}>
                     {filteredTovarList.map((item) => (
                         <TovarCard
-                            key={item.id}
-                            id={item.id}
+                            key={item._id}
+                            id={item._id}
                             lang={item.lang}
                             artist={item.artist}
                             title={item.title}
                             price={item.price}
                             withoutPage={item.withoutPage}
-                            cover={item.img.cover}
+                            cover={item.img[0]}
                             discountPrice={item.discountPrice}
                         />
                     ))}

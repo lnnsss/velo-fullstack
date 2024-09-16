@@ -1,42 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../contexts/AppContext";
 import { PageLayout } from "../../components/PageLayout";
-import { useRouter } from "next/router";
 import { TovarPage } from "../../components/Pages/TovarPage/TovarPage";
-import {discount, langCondition, priceCondition} from "../../components/constants";
+import { discount, langCondition, priceCondition, tovarListURL } from "../../components/constants";
 
-export default function tovar() {
+export default function Tovar({ tovar }) {
   const { currentTheme, setCurrentTheme } = useContext(AppContext);
   const { cartList, setCartList } = useContext(AppContext);
-  const { finalTovarList, setFinalTovarList } = useContext(AppContext);
-
-  const router = useRouter();
-  const [tovar, setTovar] = useState(null);
-
-  // поиск нужного товара
-  useEffect(() => {
-    const { id } = router.query;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/tovarList/${id}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        if (data.price >= priceCondition || data.lang === langCondition) {
-          let newPrice = data.price - (data.price / 100) * discount; // Цена с учетом скидки
-          data.discountPrice = Math.ceil(newPrice);
-        }
-        setTovar(data); // Присвоение товара в состояние
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchData();
-
-  }, [router.query]);
 
   return (
     <PageLayout
@@ -45,11 +15,39 @@ export default function tovar() {
       setCurrentTheme={setCurrentTheme}
       cartList={cartList}
     >
-      {tovar ? (
+      {tovar 
+      ? (
         <TovarPage currentTheme={currentTheme} tovar={tovar} />
-      ) : (
+      )
+      : (
         <div className="mt-[250px] mx-auto w-10 text-xl text-bold">Loading...</div>
       )}
     </PageLayout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { id } = context.params; // Получаем id из параметров URL
+  const response = await fetch(`${tovarListURL}/${id}`);
+
+  // Check if the response is OK (status code 200)
+  if (!response.ok) {
+    return {
+      notFound: true, // Redirect to 404 page if the product doesn't exist
+    };
+  }
+
+  const data = await response.json();
+
+  // Additional checks for price and language condition
+  if (data.price >= priceCondition || data.lang === langCondition) {
+    let newPrice = data.price - (data.price / 100) * discount; // Цена с учетом скидки
+    data.discountPrice = Math.ceil(newPrice);
+  }
+
+  return {
+    props: {
+      tovar: data, // Передаем товар как пропс
+    },
+  };
 }

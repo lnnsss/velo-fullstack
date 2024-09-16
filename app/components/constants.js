@@ -1,3 +1,6 @@
+// ссылка на сервер к tovarList
+export const tovarListURL ='http://localhost:3001/tovars';
+
 // Тема
 export const theme = false; // светлая - false, темная - true
 

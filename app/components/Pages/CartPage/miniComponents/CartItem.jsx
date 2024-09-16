@@ -12,7 +12,7 @@ export function CartItem({ item }) {
 
   // изменение количества товара в корзине
   const handleCountChange = (e) => {
-    let itemId = Number(e.target.id);
+    let itemId = e.target.id;
     let newCartItem = cartList.find((el) => el.id === itemId);
     if (e.target.textContent === "<") {
       if (newCartItem.count > 1) {

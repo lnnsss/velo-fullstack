@@ -90,7 +90,6 @@ export function Tovars({ activeFilter, inputValue }) {
                             artist={item.artist}
                             title={item.title}
                             price={item.price}
-                            withoutPage={item.withoutPage}
                             cover={item.img[0]}
                             discountPrice={item.discountPrice}
                         />

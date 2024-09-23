@@ -3,12 +3,10 @@ import s from "./../CartPage.module.css";
 import Image from "next/image";
 import { AppContext } from "../../../../contexts/AppContext";
 import Link from "next/link";
-import { useViewedAlbums } from "../../../../hooks/useViewedAlbums";
 
 export function CartItem({ item }) {
   const { cartList, setCartList } = useContext(AppContext);
   const [count, setCount] = useState(item.count);
-  const { viewedAlbums, toggleViewAlbum } = useViewedAlbums();
 
   // изменение количества товара в корзине
   const handleCountChange = (e) => {
@@ -34,13 +32,6 @@ export function CartItem({ item }) {
       <div className={s.korzina_tovar_image_div}>
         <Link
           href={`/catalog/${item.id}`}
-          onClick={() =>
-            toggleViewAlbum({
-              id: item.id,
-              cover: item.cover,
-              title: item.title,
-            })
-          }
         >
           <Image
             src={item.cover}

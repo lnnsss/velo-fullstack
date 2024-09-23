@@ -76,6 +76,11 @@ main {
   flex-grow: 1;
 }
 
+.nightTheme {
+  color: var(--white);
+  background-color: var(--secondBlack);
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

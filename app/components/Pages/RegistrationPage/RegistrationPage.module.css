@@ -1,0 +1,130 @@
+.pa1 {
+  width: 100%;
+  height: 100%;
+}
+.pa1_container {
+  max-width: var(--maxWidth);
+  margin: 0px auto;
+  padding: 0px 15px;
+  text-align: center;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.tittle {
+  font-size: 32px;
+  font-weight: 500;
+}
+.registrationPage {
+  padding: 100px 0 40px 0;
+  transition: 0.5s;
+}
+.addForm {
+  margin: 40px auto 0 auto;
+  width: 500px;
+  border: 2px solid var(--grey);
+  border-radius: 20px;
+}
+.addForm_container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.formTittle {
+  font-size: 24px;
+  text-align: center;
+}
+.regBtn {
+  margin: 20px auto 0 auto;
+  height: 50px;
+  background-color: inherit;
+  border: 2px solid var(--green);
+  border-radius: 10px;
+  width: 80%;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--green);
+  transition: 0.5s;
+}
+.regBtn:hover {
+  background-color: var(--green);
+  color: var(--white);
+  width: 80%;
+}
+.regBtn:active {
+  filter: brightness(80%);
+  transition: 0s;
+}
+.addFormInput {
+  width: 100%;
+  height: 50px;
+  background-color: inherit;
+  border: 2px solid var(--grey);
+  border-radius: 10px;
+  padding-left: 10px;
+  margin: 20px 0;
+}
+.addFormLabel {
+  font-size: 24px;
+  text-align: left;
+}
+.alreadyHave {
+  font-size: 14px;
+  color: var(--grey);
+  text-align: right;
+}
+.toLogin {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+/*----media---------------------------------*/
+
+@media (max-width: 768px) {
+  .addPage {
+    padding: 70px 0 40px 0;
+  }
+  .addForm {
+    width: 360px;
+  }
+}
+
+@media (max-width: 472px) {
+  .addForm {
+    margin: 40px auto 0 auto;
+    width: 280px;
+    height: 460px;
+    border: 2px solid var(--grey);
+    border-radius: 20px;
+  }
+}
+
+/*----nightTheme---------------------------------*/
+.nightTheme {
+  color: var(--white);
+  background-color: var(--secondBlack);
+}
+
+/*----nightTheme--add-------------------------------*/
+.nightTheme .regBtn {
+  border: 2px solid var(--red);
+  color: var(--red);
+}
+.nightTheme .regBtn:hover {
+  background-color: var(--red);
+  color: var(--white);
+  width: 80%;
+}
+
+/*----nightTheme--inputs-------------------------------*/
+.nightTheme input:-webkit-autofill,
+.nightTheme input:-webkit-autofill:hover,
+.nightTheme input:-webkit-autofill:focus {
+  border: 1px solid inherit;
+  -webkit-text-fill-color: var(--white);
+  -webkit-box-shadow: 0 0 0px 1000px inherit inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

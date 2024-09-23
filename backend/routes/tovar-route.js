@@ -29,4 +29,3 @@ router.post("/tovars", addTovar);
 router.patch("/tovars/:id", updateTovar);
 
 module.exports = router;
-

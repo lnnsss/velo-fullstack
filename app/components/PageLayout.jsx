@@ -18,7 +18,7 @@ export function PageLayout({ children, currentTheme, setCurrentTheme, cartList, 
                 <main
                     className={clsx(
                         "flex-grow transition duration-500", // flex-grow растягивает main
-                        currentTheme ? "bg-second-black" : "bg-white"
+                        currentTheme ? "nightTheme" : "bg-white"
                     )}
                 >
                     {children}

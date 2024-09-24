@@ -8,11 +8,6 @@ import { HeaderLayout } from "./miniComponents/HeaderLayout";
 export function Header({ cartList }) {
     const [burgerActive, setBurgerActive] = useState(false);
     const { currentTheme, setCurrentTheme } = useContext(AppContext);
-    const { cartCounter, handleSetCartCounter } = useContext(AppContext);
-
-    useEffect(() => {
-        handleSetCartCounter();
-    }, [cartList, cartCounter]);
 
     return (
         <HeaderLayout>
@@ -26,7 +21,6 @@ export function Header({ cartList }) {
                 cartList={cartList}
                 currentTheme={currentTheme}
                 setCurrentTheme={setCurrentTheme}
-                cartCounter={cartCounter}
             />
         </HeaderLayout>
     );

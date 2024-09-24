@@ -5,10 +5,13 @@ import { PageLayout } from "../components/PageLayout";
 
 export default function Reviews() {
   const { currentTheme, setCurrentTheme } = useContext(AppContext);
-  const { cartList, setCartList } = useContext(AppContext);
 
   return (
-    <PageLayout title="Отзывы" currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} cartList={cartList}>
+    <PageLayout
+      title="Отзывы"
+      currentTheme={currentTheme}
+      setCurrentTheme={setCurrentTheme}
+    >
       <ReviewsPage currentTheme={currentTheme} />
     </PageLayout>
   );

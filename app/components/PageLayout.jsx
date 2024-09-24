@@ -13,7 +13,6 @@ export function PageLayout({ children, currentTheme, setCurrentTheme, cartList, 
                 <Header
                     currentTheme={currentTheme}
                     setCurrentTheme={setCurrentTheme}
-                    cartList={cartList}
                 />
                 <main
                     className={clsx(

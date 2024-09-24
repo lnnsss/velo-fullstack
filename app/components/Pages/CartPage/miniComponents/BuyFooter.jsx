@@ -1,24 +1,33 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./../CartPage.module.css";
-import { AppContext } from "../../../../contexts/AppContext";
+import useFetchCart from "../../../../hooks/useFetchCart"; // Путь к хуку
 
 export function BuyFooter() {
-  const { cartList, setCartList } = useContext(AppContext);
-  let itogoPriceCounter = cartList.reduce(
-    (acc, current) => Number(acc) + Number(current.totalPrice),
-    0
-  );
+  const token = localStorage.getItem("jwtToken");
+  const { cartList, loading, error } = useFetchCart(token);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    if (cartList.length > 0) {
+      const itogoPriceCounter = cartList.reduce(
+        (acc, current) => acc + current.price * current.quantity,
+        0
+      );
+      setTotalPrice(itogoPriceCounter);
+    }
+  }, [cartList]);
+
+  if (loading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     <div className={`${s.buyFooter} ${s._container}`}>
       <div className={s.buyFooter_left}>
         <span className={s.itogo}>Итого:</span>
-        <span className={s.itogoPrice}>{itogoPriceCounter}$</span>
+        <span className={s.itogoPrice}>{totalPrice}$</span>
       </div>
       <div className={s.buyFooter_right}>
-        <button
-          className={`${s.buyFooter_btn} ${s.buyBtn}`}
-        >
+        <button className={`${s.buyFooter_btn} ${s.buyBtn}`}>
           Заказать
         </button>
       </div>

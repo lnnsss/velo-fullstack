@@ -1,6 +1,9 @@
 // ссылка на сервер к tovarList
 export const tovarListURL = 'http://localhost:3001/tovars';
 
+// ссылка на сервер к cartList
+export const cartListURL = 'http://localhost:3001/carts';
+
 // ссылка на сервер к registration
 export const registrationURL = 'http://localhost:3001/auth/registration';
 

@@ -8,7 +8,7 @@ const router = express.Router();
 // Получение всех пользователей
 router.get('/users', roleMiddleware(['USER']), getUsers);
 
-// Регистрация
+// Регистрация c валидацией
 router.post('/registration', [
     check("username", "Имя пользователя не может быть пустым").notEmpty(),
     check("password", "Пароль должен быть содержать как минимум 4 символа, но не больше 10").isLength({min: 4, max: 10})

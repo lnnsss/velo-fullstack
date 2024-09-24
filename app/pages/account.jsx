@@ -6,7 +6,6 @@ import * as jwt_decode from "jwt-decode";
 
 export default function Account() {
   const { currentTheme, setCurrentTheme } = useContext(AppContext);
-  const { cartList, setCartList } = useContext(AppContext);
 
   useEffect(() => {
     // Проверка, выполняется ли код на клиенте
@@ -15,12 +14,9 @@ export default function Account() {
       if (jwtToken) {
         try {
           const decodedToken = jwt_decode(jwtToken);
-          console.log("decodedToken:", decodedToken);
         } catch (error) {
           console.error("Ошибка декодирования токена:", error);
         }
-      } else {
-        console.log("Токен не найден");
       }
     }
   }, []);
@@ -30,7 +26,6 @@ export default function Account() {
       title="Аккаунт"
       currentTheme={currentTheme}
       setCurrentTheme={setCurrentTheme}
-      cartList={cartList}
     >
       <AccountPage currentTheme={currentTheme} />
     </PageLayout>

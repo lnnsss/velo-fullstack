@@ -12,7 +12,6 @@ export function MoreFrom({ artist, title }) {
       try {
         const response = await fetch(`${tovarListURL}?artist=${artist.join(",")}`);
         if (!response.ok) {
-          console.log('Network response was not ok');
           throw new Error('Network response was not ok');
         }
         const data = await response.json();

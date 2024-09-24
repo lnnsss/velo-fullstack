@@ -1,9 +1,7 @@
 import Image from "next/image";
 import s from "./../CatalogPage.module.css";
-import { useContext } from "react";
-import { AppContext } from "../../../../contexts/AppContext";
 import Link from "next/link";
-import { handleAddToCart } from "../../../utils";
+import useAddToCart from "../../../../hooks/useAddToCart";
 
 export function TovarCard({
   id,
@@ -13,55 +11,48 @@ export function TovarCard({
   price,
   cover,
   discountPrice,
+  cartId,
+  token,
 }) {
-  const { cartList, setCartList } = useContext(AppContext);
+  const { addToCart } = useAddToCart(token);
 
   // Добавление в корзину
-  const handleAddToCartLocal = (e) => {
-    handleAddToCart(
-      cartList,
-      setCartList,
-      id,
-      cover,
-      title,
-      artist,
-      price,
-      discountPrice
-    );
+  const handleAddToCart = () => {
+    addToCart(cartId, id, 1, price);
   };
 
   return (
     <div id={`item_${id}`} key={id} className={s.tovar_wrapper}>
-        <div key={id}>
-      <Link href={`/catalog/${id}`} className={`${s.tovar} ${lang}`}>
-        <Image
-          src={cover}
-          alt={title}
-          className={s.tovar_image}
-          width={240}
-          height={240}
-        />
-        <h4 className={s.tovar_title}>{title}</h4>
-        <span className={s.tovar_artist}>{artist.join(", ")}</span>
-        <span className={s.tovar_price}>
-          <span className={s.tovar_price_title}>Цена: </span>
-          {price}$
-        </span>
-        {discountPrice && (
-          <span className={`${s.tovar_price} ${s.discount}`}>
-            <span className={s.tovar_price_title}>Цена со скидкой: </span>
-            {discountPrice}$
+      <div key={id}>
+        <Link href={`/catalog/${id}`} className={`${s.tovar} ${lang}`}>
+          <Image
+            src={cover}
+            alt={title}
+            className={s.tovar_image}
+            width={240}
+            height={240}
+          />
+          <h4 className={s.tovar_title}>{title}</h4>
+          <span className={s.tovar_artist}>{artist.join(", ")}</span>
+          <span className={s.tovar_price}>
+            <span className={s.tovar_price_title}>Цена: </span>
+            {price}$
           </span>
-        )}
-      </Link>
-      <button
-        className={s.tovar_btn}
-        id={`btn_${id}`}
-        onClick={handleAddToCart}
-      >
-        В корзину
-      </button>
-    </div>
+          {discountPrice && (
+            <span className={`${s.tovar_price} ${s.discount}`}>
+              <span className={s.tovar_price_title}>Цена со скидкой: </span>
+              {discountPrice}$
+            </span>
+          )}
+        </Link>
+        <button
+          className={s.tovar_btn}
+          id={`btn_${id}`}
+          onClick={handleAddToCart}
+        >
+          В корзину
+        </button>
+      </div>
     </div>
   );
 }

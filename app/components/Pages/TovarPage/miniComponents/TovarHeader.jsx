@@ -1,9 +1,19 @@
+import useAddToCart from "../../../../hooks/useAddToCart";
 import { useCoverFullScreen } from "../../../../hooks/useCoverFullScreen";
+import useFetchCart from "../../../../hooks/useFetchCart";
 import s from "./../TovarPage.module.css";
 import Image from "next/image";
 
-export function TovarHeader({ tovar, handleAddToCart }) {
+export function TovarHeader({ tovar }) {
   const { isFullScreen, toggleFullScreen } = useCoverFullScreen();
+  const token = localStorage.getItem("jwtToken");
+  const { addToCart } = useAddToCart(token);
+  const { cartId } = useFetchCart(token);
+
+  // Добавление в корзину
+  const handleAddToCart = () => {
+    addToCart(cartId, tovar._id, 1, tovar.price);
+  };
 
   return (
     <div className={s.tovar_header}>

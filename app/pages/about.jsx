@@ -5,10 +5,13 @@ import { PageLayout } from "../components/PageLayout";
 
 export default function About() {
   const { currentTheme, setCurrentTheme } = useContext(AppContext);
-  const { cartList, setCartList } = useContext(AppContext);
 
   return (
-    <PageLayout title="О нас" currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} cartList={cartList}>
+    <PageLayout
+      title="О нас"
+      currentTheme={currentTheme}
+      setCurrentTheme={setCurrentTheme}
+    >
       <AboutPage currentTheme={currentTheme} />
     </PageLayout>
   );

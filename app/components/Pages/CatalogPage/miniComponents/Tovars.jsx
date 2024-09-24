@@ -2,12 +2,14 @@ import s from "./../CatalogPage.module.css";
 import { TovarCard } from "./TovarCard";
 import { useEffect, useState } from "react";
 import {discount, langCondition, priceCondition, tovarListURL} from "../../../constants";
+import useFetchCart from "../../../../hooks/useFetchCart";
 
 export function Tovars({ activeFilter, inputValue }) {
     const [finalTovarList, setFinalTovarList] = useState([]);
     const [filteredTovarList, setFilteredTovarList] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
-
+    const token = localStorage.getItem("jwtToken");
+    const { cartId } = useFetchCart(token);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -92,6 +94,8 @@ export function Tovars({ activeFilter, inputValue }) {
                             price={item.price}
                             cover={item.img[0]}
                             discountPrice={item.discountPrice}
+                            cartId={cartId}
+                            token={token}
                         />
                     ))}
                 </div>

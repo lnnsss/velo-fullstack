@@ -1,40 +1,58 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./../CartPage.module.css";
 import Image from "next/image";
-import { AppContext } from "../../../../contexts/AppContext";
 import Link from "next/link";
+import { tovarListURL } from "../../../constants";
+import useAddToCart from "../../../../hooks/useAddToCart";
 
-export function CartItem({ item }) {
-  const { cartList, setCartList } = useContext(AppContext);
-  const [count, setCount] = useState(item.count);
+export function CartItem({ item, cartId }) {
+  const [productDetails, setProductDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem("jwtToken");
+  const { addToCart } = useAddToCart(token); 
 
-  // изменение количества товара в корзине
-  const handleCountChange = (e) => {
-    let itemId = e.target.id;
-    let newCartItem = cartList.find((el) => el.id === itemId);
-    if (e.target.textContent === "<") {
-      if (newCartItem.count > 1) {
-        newCartItem.count--;
-      } else {
-        setCartList(cartList.filter((el) => el.id != itemId));
-        return;
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(`${tovarListURL}/${item.product_id}`);
+        if (!response.ok) {
+          throw new Error("Ошибка при получении данных товара");
+        }
+        const data = await response.json();
+        setProductDetails(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
-    } else if (e.target.textContent === ">") {
-      newCartItem.count++;
+    };
+
+    fetchProductDetails();
+  }, [item.product_id]);
+
+  // Обработка состояния загрузки и ошибок
+  if (loading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
+
+  // Функция для увеличения количества товара
+  const handleIncreaseQuantity = async () => {
+    await addToCart(cartId, item.product_id, 1, item.price); 
+  };
+
+  // Функция для уменьшения количества товара
+  const handleDecreaseQuantity = async () => {
+    if (item.quantity > 1) {
+      await addToCart(cartId, item.product_id, -1, item.price); 
     }
-    newCartItem.totalPrice = newCartItem.price * newCartItem.count;
-    setCount(newCartItem.count);
-    setCartList([...cartList]);
   };
 
   return (
     <div className={s.korzinaItem}>
       <div className={s.korzina_tovar_image_div}>
-        <Link
-          href={`/catalog/${item.id}`}
-        >
+        <Link href={`/catalog/${item.product_id}`}>
           <Image
-            src={item.cover}
+            src={productDetails.img[0]}
             alt="tovar"
             className={s.korzina_tovar_image}
             width={120}
@@ -42,22 +60,24 @@ export function CartItem({ item }) {
           />
         </Link>
       </div>
-      <h3 className={s.korzina_tovar_title}>{item.title}</h3>
-      <h4 className={s.korzina_tovar_artist}>{item.artist.join(", ")}</h4>
-      <h4 className={s.korzina_tovar_price}>{item.totalPrice}$</h4>
+      <h3 className={s.korzina_tovar_title}>{productDetails.title}</h3>
+      <h4 className={s.korzina_tovar_artist}>
+        {productDetails.artist.join(", ")}
+      </h4>
+      <h4 className={s.korzina_tovar_price}>{item.price * item.quantity}$</h4>
       <div className={s.korzina_tovar_btns}>
         <button
           id={item.id}
           className={s.korzina_tovar_fix}
-          onClick={handleCountChange}
+          onClick={handleDecreaseQuantity} 
         >
           &lt;
         </button>
-        <h4 className={s.korzina_tovar_count}>{count}</h4>
+        <h4 className={s.korzina_tovar_count}>{item.quantity}</h4>
         <button
           id={item.id}
           className={s.korzina_tovar_fix}
-          onClick={handleCountChange}
+          onClick={handleIncreaseQuantity} 
         >
           &gt;
         </button>

@@ -12,13 +12,8 @@ export default function Cart() {
       title="Корзина"
       currentTheme={currentTheme}
       setCurrentTheme={setCurrentTheme}
-      cartList={cartList}
     >
-      <CartPage
-        currentTheme={currentTheme}
-        cartList={cartList}
-        setCartList={setCartList}
-      />
+      <CartPage currentTheme={currentTheme} />
     </PageLayout>
   );
 }

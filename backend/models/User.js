@@ -10,7 +10,10 @@ const User = new Schema({
         type: String,
         required: true
     },
-    roles: [{type: String, ref: "Role"}]
+    roles: [{type: String, ref: "Role"}],
+    cart_id: {
+        type: String
+    }
 });
 
 module.exports = model('User', User);

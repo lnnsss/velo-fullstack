@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import s from "./../Header.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,15 +5,16 @@ import dayTheme from "./../images/dayIcon.png";
 import nightTheme from "./../images/nightIcon.png";
 import account from "./../images/account.png";
 import { useAuth } from "../../../hooks/useAuth";
+import useFetchCart from "../../../hooks/useFetchCart";
 
-export function HeaderMenu({
-  currentTheme,
-  setCurrentTheme,
-  burgerActive,
-  cartList,
-  cartCounter,
-}) {
+export function HeaderMenu({ currentTheme, setCurrentTheme, burgerActive }) {
   const userIsLoggedIn = useAuth();
+  const token = localStorage.getItem("jwtToken");
+  const { cartList } = useFetchCart(token);
+  const cartCounter = cartList.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <nav className={`${s.header_menu} ${burgerActive && s.active}`}>
@@ -22,14 +22,12 @@ export function HeaderMenu({
         <HeaderLink href="/catalog">Каталог</HeaderLink>
         <HeaderLink href="/cart">
           Корзина
-          {cartList.length ? (
+          {cartCounter > 0 && (
             <div className={s.korzinaCounter}>{cartCounter}</div>
-          ) : (
-            ""
           )}
         </HeaderLink>
         <HeaderLink href="/reviews">Отзывы</HeaderLink>
-        <HeaderLink href="/about">О наc</HeaderLink>
+        <HeaderLink href="/about">О нас</HeaderLink>
         <HeaderLink href="/add">Добавить</HeaderLink>
         {userIsLoggedIn ? <AccountHeaderLink /> : <RegistrationHeaderLink />}
         <li className={s.header_link} id="themeBtn">
@@ -58,7 +56,12 @@ function HeaderLink({ href, children }) {
 function RegistrationHeaderLink() {
   return (
     <HeaderLink href="/auth/registration">
-      <Image src={account} alt="account" className={s.header_themeImg} title="Регистрация" />
+      <Image
+        src={account}
+        alt="account"
+        className={s.header_themeImg}
+        title="Регистрация"
+      />
     </HeaderLink>
   );
 }
@@ -66,7 +69,12 @@ function RegistrationHeaderLink() {
 function AccountHeaderLink() {
   return (
     <HeaderLink href="/account">
-      <Image src={account} alt="account" className={s.header_themeImg} title="Мой аккаунт" />
+      <Image
+        src={account}
+        alt="account"
+        className={s.header_themeImg}
+        title="Мой аккаунт"
+      />
     </HeaderLink>
   );
 }

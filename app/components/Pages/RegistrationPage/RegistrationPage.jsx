@@ -47,7 +47,6 @@ export function RegistrationPage({ currentTheme }) {
       const data = await response.json();
       setSuccessMessage("Регистрация прошла успешно!"); // Устанавливаем сообщение об успехе
       setErrorMessage(""); // Очищаем предыдущие сообщения об ошибках
-      console.log(data); // Обрабатываем успешный ответ от сервера по мере необходимости
 
       // сбрасываем форму после успешной регистрации
       setFormData(emptyFormData);

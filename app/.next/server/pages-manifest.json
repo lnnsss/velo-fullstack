@@ -2,9 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.js",
-  "/auth/login": "pages/auth/login.js",
-  "/auth/registration": "pages/auth/registration.js",
-  "/account": "pages/account.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/catalog": "pages/catalog.js",
+  "/cart": "pages/cart.js",
+  "/auth/registration": "pages/auth/registration.js"
 }

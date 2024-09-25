@@ -14,11 +14,6 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
-    "/404": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/404.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -29,20 +24,20 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/account": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/account.js"
-    ],
-    "/auth/login": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/auth/login.js"
-    ],
     "/auth/registration": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/auth/registration.js"
+    ],
+    "/cart": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/cart.js"
+    ],
+    "/catalog": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/catalog.js"
     ]
   },
   "ampFirstPages": []

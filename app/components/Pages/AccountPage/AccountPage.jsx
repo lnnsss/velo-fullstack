@@ -5,7 +5,7 @@ export function AccountPage({ currentTheme }) {
   const router = useRouter();
   
   function logOut() {
-    localStorage.setItem("jwtToken", 0);
+    localStorage.setItem("veloJWT", 0);
     router.push("/auth/registration");
   }
 

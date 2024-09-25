@@ -1,45 +1,25 @@
 import React from "react";
 import s from "./CartPage.module.css";
+import { CartHeader } from "./miniComponents/CartHeader";
 import { BuyFooter } from "./miniComponents/BuyFooter";
-import { CartItem } from "./miniComponents/CartItem";
 import useFetchCart from "../../../hooks/useFetchCart";
-import useClearCart from "../../../hooks/useClearCart";
+import { Cart } from "./miniComponents/Cart";
 
 export function CartPage({ currentTheme }) {
-  const token = localStorage.getItem("jwtToken");
-  const { clearCart } = useClearCart(token);
-  const { cartList, cartId, loading, error } = useFetchCart(token); // Объединение вызовов
-
-  const displayCartList = cartList.map((item, i) => (
-    <CartItem item={item} cartId={cartId} key={i} />
-  ));
-
-  // Очистка корзины
-  const handleClearCart = async () => {
-    await clearCart(cartId);
-  };
+  const token = localStorage.getItem("veloJWT");
+  const { cartList, cartId, loading, error } = useFetchCart(token);
 
   return (
     <div className={`${s.cartPage} ${currentTheme && `${s.nightTheme}`}`}>
       <div className={s.pa1}>
         <div className={s.pa1_container}>
-          <div className={s.korzinaHeader}>
-            <h2 className={s.tittle}>Корзина</h2>
-            <button className={s.clearKorzina} onClick={handleClearCart}>
-              Очистить корзину
-            </button>
-          </div>
-          <div className={s.korzina}>
-            {loading ? (
-              <span className={s.loading}>Загрузка...</span>
-            ) : error ? (
-              <span className={s.error}>{error}</span>
-            ) : cartList.length === 0 ? (
-              <span className={s.pusto}>Пусто</span>
-            ) : (
-              displayCartList
-            )}
-          </div>
+          <CartHeader token={token} cartId={cartId} />
+          <Cart
+            cartList={cartList}
+            cartId={cartId}
+            error={error}
+            loading={loading}
+          />
           <BuyFooter />
         </div>
       </div>

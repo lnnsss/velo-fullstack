@@ -10,7 +10,7 @@ export default function Account() {
   useEffect(() => {
     // Проверка, выполняется ли код на клиенте
     if (typeof window !== "undefined") {
-      const jwtToken = localStorage.getItem("jwtToken");
+      const jwtToken = localStorage.getItem("veloJWT");
       if (jwtToken) {
         try {
           const decodedToken = jwt_decode(jwtToken);

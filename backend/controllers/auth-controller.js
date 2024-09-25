@@ -1,11 +1,11 @@
+const { default: mongoose } = require("mongoose");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const User = require("./../models/User");
 const Role = require("../models/Role");
-const { secret } = require("../config");
 const jwt = require("jsonwebtoken");
 const Cart = require("../models/Cart");
-const { default: mongoose } = require("mongoose");
+const secret = process.env.SECRET;
 
 // Генерация токена
 const generateAccessToken = (id, roles, cart_id) => {

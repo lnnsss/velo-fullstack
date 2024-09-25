@@ -35,5 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-mongoDbURL.js
-config.js
+# env 
+.env

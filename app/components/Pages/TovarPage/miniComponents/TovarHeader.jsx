@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export function TovarHeader({ tovar }) {
   const { isFullScreen, toggleFullScreen } = useCoverFullScreen();
-  const token = localStorage.getItem("jwtToken");
+  const token = localStorage.getItem("veloJWT");
   const { addToCart } = useAddToCart(token);
   const { cartId } = useFetchCart(token);
 

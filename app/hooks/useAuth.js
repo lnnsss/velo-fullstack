@@ -4,7 +4,7 @@ export function useAuth() {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('veloJWT');
     setUserIsLoggedIn(token !== '0');
   }, []);
 

@@ -3,7 +3,7 @@ import s from "./../CartPage.module.css";
 import useFetchCart from "../../../../hooks/useFetchCart"; // Путь к хуку
 
 export function BuyFooter() {
-  const token = localStorage.getItem("jwtToken");
+  const token = localStorage.getItem("veloJWT");
   const { cartList, loading, error } = useFetchCart(token);
   const [totalPrice, setTotalPrice] = useState(0);
 

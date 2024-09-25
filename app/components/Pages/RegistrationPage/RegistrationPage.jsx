@@ -23,9 +23,8 @@ export function RegistrationPage({ currentTheme }) {
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение отправки формы
+    e.preventDefault(); 
 
-    // Подготавливаем данные для POST-запроса
     const requestData = {
       username: formData.username,
       password: formData.password
@@ -45,15 +44,13 @@ export function RegistrationPage({ currentTheme }) {
       }
 
       const data = await response.json();
-      setSuccessMessage("Регистрация прошла успешно!"); // Устанавливаем сообщение об успехе
-      setErrorMessage(""); // Очищаем предыдущие сообщения об ошибках
+      setSuccessMessage("Регистрация прошла успешно!"); 
+      setErrorMessage(""); 
 
-      // сбрасываем форму после успешной регистрации
       setFormData(emptyFormData);
-
     } catch (error) {
-      setErrorMessage(error.message); // Устанавливаем сообщение об ошибке, если регистрация не удалась
-      setSuccessMessage(""); // Очищаем предыдущие сообщения об успехе
+      setErrorMessage(error.message); 
+      setSuccessMessage(""); 
     }
   };
 

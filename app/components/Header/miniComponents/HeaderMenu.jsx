@@ -9,7 +9,7 @@ import useFetchCart from "../../../hooks/useFetchCart";
 
 export function HeaderMenu({ currentTheme, setCurrentTheme, burgerActive }) {
   const userIsLoggedIn = useAuth();
-  const token = localStorage.getItem("jwtToken");
+  const token = localStorage.getItem("veloJWT");
   const { cartList } = useFetchCart(token);
   const cartCounter = cartList.reduce(
     (total, item) => total + item.quantity,

@@ -9,8 +9,8 @@ export function CartItem({ item, cartId }) {
   const [productDetails, setProductDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const token = localStorage.getItem("jwtToken");
-  const { addToCart } = useAddToCart(token); 
+  const token = localStorage.getItem("veloJWT");
+  const { addToCart } = useAddToCart(token);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -37,13 +37,13 @@ export function CartItem({ item, cartId }) {
 
   // Функция для увеличения количества товара
   const handleIncreaseQuantity = async () => {
-    await addToCart(cartId, item.product_id, 1, item.price); 
+    await addToCart(cartId, item.product_id, 1, item.price);
   };
 
   // Функция для уменьшения количества товара
   const handleDecreaseQuantity = async () => {
     if (item.quantity > 1) {
-      await addToCart(cartId, item.product_id, -1, item.price); 
+      await addToCart(cartId, item.product_id, -1, item.price);
     }
   };
 
@@ -66,22 +66,22 @@ export function CartItem({ item, cartId }) {
       </h4>
       <h4 className={s.korzina_tovar_price}>{item.price * item.quantity}$</h4>
       <div className={s.korzina_tovar_btns}>
-        <button
-          id={item.id}
-          className={s.korzina_tovar_fix}
-          onClick={handleDecreaseQuantity} 
-        >
+        <ChangePriceButton item={item} f={handleDecreaseQuantity}>
           &lt;
-        </button>
+        </ChangePriceButton>
         <h4 className={s.korzina_tovar_count}>{item.quantity}</h4>
-        <button
-          id={item.id}
-          className={s.korzina_tovar_fix}
-          onClick={handleIncreaseQuantity} 
-        >
+        <ChangePriceButton item={item} f={handleIncreaseQuantity}>
           &gt;
-        </button>
+        </ChangePriceButton>
       </div>
     </div>
+  );
+}
+
+function ChangePriceButton({ item, f, children }) {
+  return (
+    <button id={item.id} className={s.korzina_tovar_fix} onClick={f}>
+      {children}
+    </button>
   );
 }

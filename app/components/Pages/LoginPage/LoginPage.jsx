@@ -13,8 +13,8 @@ export function LoginPage({ currentTheme }) {
   };
 
   const [formData, setFormData] = useState(emptyFormData);
-  const [errorMessage, setErrorMessage] = useState(""); // Состояние для сообщений об ошибках
-  const [successMessage, setSuccessMessage] = useState(""); // Состояние для сообщений об успехе
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,9 +25,8 @@ export function LoginPage({ currentTheme }) {
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение отправки формы
+    e.preventDefault(); 
 
-    // Подготавливаем данные для POST-запроса
     const requestData = {
       username: formData.login,
       password: formData.password
@@ -47,16 +46,16 @@ export function LoginPage({ currentTheme }) {
       }
 
       const data = await response.json();
-      localStorage.setItem('jwtToken', data.token);
+      localStorage.setItem('veloJWT', data.token);
       setSuccessMessage("Авторизация прошла успешно!"); 
-      setErrorMessage(""); // Очищаем предыдущие сообщения об ошибках
+      setErrorMessage("");
 
-      setFormData(emptyFormData); // Сбрасываем форму после успешной авторизации
+      setFormData(emptyFormData); 
       router.push("/account");
 
     } catch (error) {
-      setErrorMessage(error.message); // Устанавливаем сообщение об ошибке, если авторизация не удалась
-      setSuccessMessage(""); // Очищаем предыдущие сообщения об успехе
+      setErrorMessage(error.message); 
+      setSuccessMessage(""); 
     }
   };
 

@@ -8,3 +8,11 @@ export function HeaderLogo() {
     </Link>
   );
 }
+
+export function AdminHeaderLogo() {
+  return (
+    <Link href="/admin" className={s.header_logo}>
+      &#9733;-&#9733;
+    </Link>
+  );
+}

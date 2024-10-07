@@ -169,6 +169,18 @@
   filter: brightness(80%);
   transition: 0.1s;
 }
+.loading,
+.error,
+.pusto {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--grey);
+  margin: 0 auto;
+}
+.redUnderlinedText {
+  color: var(--red);
+  text-decoration: underline;
+}
 
 /*----media---------------------------------*/
 

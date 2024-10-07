@@ -1,22 +1,22 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../contexts/AppContext";
-import { HeaderMenu } from "./miniComponents/HeaderMenu";
 import { HeaderBurger } from "./miniComponents/HeaderBurger";
-import { HeaderLogo } from "./miniComponents/HeaderLogo";
 import { HeaderLayout } from "./miniComponents/HeaderLayout";
+import { AdminHeaderMenu } from "./miniComponents/HeaderMenu";
+import { AdminHeaderLogo } from "./miniComponents/HeaderLogo";
 
-export function Header() {
+export function AdminHeader() {
     const [burgerActive, setBurgerActive] = useState(false);
     const { currentTheme, setCurrentTheme } = useContext(AppContext);
 
     return (
         <HeaderLayout>
-            <HeaderLogo />
+            <AdminHeaderLogo />
             <HeaderBurger
                 burgerActive={burgerActive}
                 setBurgerActive={setBurgerActive}
             />
-            <HeaderMenu
+            <AdminHeaderMenu
                 burgerActive={burgerActive}
                 currentTheme={currentTheme}
                 setCurrentTheme={setCurrentTheme}

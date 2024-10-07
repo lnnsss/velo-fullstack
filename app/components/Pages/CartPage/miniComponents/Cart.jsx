@@ -1,3 +1,4 @@
+import Link from "next/link";
 import s from "./../CartPage.module.css";
 import { CartItem } from "./CartItem";
 
@@ -11,7 +12,9 @@ export function Cart({ cartList, cartId, error, loading }) {
       {loading ? (
         <span className={s.loading}>Загрузка...</span>
       ) : error ? (
-        <span className={s.error}>{error}</span>
+        <span className={s.error}>
+          Войдите в <Link className={s.redUnderlinedText} href={"/auth/login"}>аккаунт</Link>
+        </span>
       ) : cartList.length === 0 ? (
         <span className={s.pusto}>Пусто</span>
       ) : (

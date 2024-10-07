@@ -1,15 +1,15 @@
 import { useState } from "react";
-import s from "./LoginPage.module.css"; 
+import s from "./LoginPage.module.css";
 import { loginURL } from "../../constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 export function LoginPage({ currentTheme }) {
   const router = useRouter();
-  
+
   const emptyFormData = {
     username: "",
-    password: ""
+    password: "",
   };
 
   const [formData, setFormData] = useState(emptyFormData);
@@ -20,25 +20,25 @@ export function LoginPage({ currentTheme }) {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const requestData = {
       username: formData.login,
-      password: formData.password
+      password: formData.password,
     };
 
     try {
-      const response = await fetch(loginURL, { 
+      const response = await fetch(loginURL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData)
+        body: JSON.stringify(requestData),
       });
 
       if (!response.ok) {
@@ -46,16 +46,22 @@ export function LoginPage({ currentTheme }) {
       }
 
       const data = await response.json();
-      localStorage.setItem('veloJWT', data.token);
-      setSuccessMessage("Авторизация прошла успешно!"); 
+      localStorage.setItem("veloJWT", data.token);
+      setSuccessMessage("Авторизация прошла успешно!");
       setErrorMessage("");
 
-      setFormData(emptyFormData); 
-      router.push("/account");
+      setFormData(emptyFormData);
 
+      // расшифровка токена и получение полезной информации
+      const parts = data.token.split(".");
+      const payload = JSON.parse(atob(parts[1])); // полезная информация
+
+      const userRoles = payload.roles; // роли пользователя
+      console.log();
+      userRoles.includes("ADMIN") ? router.push("/admin") : router.push("/account");
     } catch (error) {
-      setErrorMessage(error.message); 
-      setSuccessMessage(""); 
+      setErrorMessage(error.message);
+      setSuccessMessage("");
     }
   };
 
@@ -66,33 +72,42 @@ export function LoginPage({ currentTheme }) {
           <form action="" className={s.addForm} onSubmit={handleFormSubmit}>
             <div className={s.addForm_container}>
               <h3 className={s.formTittle}>Авторизация</h3>
-              {errorMessage && <p className={s.error}>{errorMessage}</p>} {/* Отображение сообщения об ошибке */}
-              {successMessage && <p className={s.success}>{successMessage}</p>} {/* Отображение сообщения об успехе */}
+              {errorMessage && <p className={s.error}>{errorMessage}</p>}{" "}
+              {/* Отображение сообщения об ошибке */}
+              {successMessage && (
+                <p className={s.success}>{successMessage}</p>
+              )}{" "}
+              {/* Отображение сообщения об успехе */}
               <label htmlFor="login" className={s.addFormLabel}>
                 Логин
               </label>
               <input
-                  type="text"
-                  id="login"
-                  name="login"
-                  className={s.addFormInput}
-                  placeholder="ivanNumb1"
-                  value={formData.login}
-                  onChange={handleInputChange}
+                type="text"
+                id="login"
+                name="login"
+                className={s.addFormInput}
+                placeholder="ivanNumb1"
+                value={formData.login}
+                onChange={handleInputChange}
               />
               <label htmlFor="password" className={s.addFormLabel}>
                 Пароль
               </label>
               <input
-                  type="password" // Изменено на 'password' для безопасности
-                  id="password"
-                  name="password"
-                  className={s.addFormInput}
-                  placeholder="qwerty123"
-                  value={formData.password}
-                  onChange={handleInputChange}
+                type="password" 
+                id="password"
+                name="password"
+                className={s.addFormInput}
+                placeholder="qwerty123"
+                value={formData.password}
+                onChange={handleInputChange}
               />
-              <span className={s.alreadyHave}>Еще нет аккаунта? <Link className={s.toReg} href="/auth/registration">Зарегистрироваться</Link></span>
+              <span className={s.alreadyHave}>
+                Еще нет аккаунта?{" "}
+                <Link className={s.toReg} href="/auth/registration">
+                  Зарегистрироваться
+                </Link>
+              </span>
               <button type="submit" className={s.logBtn}>
                 Авторизоваться
               </button>

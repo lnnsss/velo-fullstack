@@ -42,8 +42,7 @@ export function RegistrationPage({ currentTheme }) {
       if (!response.ok) {
         throw new Error("Ошибка регистрации. Попробуйте еще раз.");
       }
-
-      const data = await response.json();
+      
       setSuccessMessage("Регистрация прошла успешно!"); 
       setErrorMessage(""); 
 
@@ -61,8 +60,8 @@ export function RegistrationPage({ currentTheme }) {
           <form action="" className={s.addForm} onSubmit={handleFormSubmit}>
             <div className={s.addForm_container}>
               <h3 className={s.formTittle}>Регистрация</h3>
-              {errorMessage && <p className={s.error}>{errorMessage}</p>} {/* Отображение сообщения об ошибке */}
-              {successMessage && <p className={s.success}>{successMessage}</p>} {/* Отображение сообщения об успехе */}
+              {errorMessage && <p className={s.error}>{errorMessage}</p>} 
+              {successMessage && <p className={s.success}>{successMessage}</p>} 
               <label htmlFor="username" className={s.addFormLabel}>
                 Логин
               </label>

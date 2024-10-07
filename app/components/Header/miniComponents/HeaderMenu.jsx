@@ -6,6 +6,7 @@ import nightTheme from "./../images/nightIcon.png";
 import account from "./../images/account.png";
 import { useAuth } from "../../../hooks/useAuth";
 import useFetchCart from "../../../hooks/useFetchCart";
+import { useRouter } from "next/router";
 
 export function HeaderMenu({ currentTheme, setCurrentTheme, burgerActive }) {
   const userIsLoggedIn = useAuth();
@@ -28,8 +29,32 @@ export function HeaderMenu({ currentTheme, setCurrentTheme, burgerActive }) {
         </HeaderLink>
         <HeaderLink href="/reviews">Отзывы</HeaderLink>
         <HeaderLink href="/about">О нас</HeaderLink>
-        <HeaderLink href="/add">Добавить</HeaderLink>
         {userIsLoggedIn ? <AccountHeaderLink /> : <RegistrationHeaderLink />}
+        <li className={s.header_link} id="themeBtn">
+          <Image
+            src={currentTheme ? nightTheme : dayTheme}
+            alt="theme"
+            className={s.header_themeImg}
+            onClick={() => setCurrentTheme(!currentTheme)}
+          />
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+export function AdminHeaderMenu({
+  currentTheme,
+  setCurrentTheme,
+  burgerActive,
+}) {
+  const userIsLoggedIn = useAuth();
+
+  return (
+    <nav className={`${s.header_menu} ${burgerActive && s.active}`}>
+      <ul className={s.header_list}>
+        <HeaderLink href="/admin/add">Добавить</HeaderLink>
+        <LogOutHeaderLink />
         <li className={s.header_link} id="themeBtn">
           <Image
             src={currentTheme ? nightTheme : dayTheme}
@@ -77,4 +102,15 @@ function AccountHeaderLink() {
       />
     </HeaderLink>
   );
+}
+
+function LogOutHeaderLink() {
+  const router = useRouter();
+
+  function logOut() {
+    localStorage.setItem("veloJWT", 0);
+    router.push("/auth/registration");
+  }
+
+  return <button className={s.header_link} onClick={() => logOut()}>Выйти</button>;
 }

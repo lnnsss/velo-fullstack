@@ -1,0 +1,21 @@
+.adminPage {
+  padding: 80px 0 40px 0;
+  transition: 0.5s;
+  min-width: 100%;
+}
+
+/*----media---------------------------------*/
+
+@media (max-width: 768px) {
+  .adminPage {
+    padding: 50px 0 20px 0;
+  }
+}
+
+.nightTheme {
+  color: var(--white);
+  background-color: var(--secondBlack);
+}
+.nightTheme .banner {
+  color: var(--white);
+}

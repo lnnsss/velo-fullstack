@@ -33,7 +33,6 @@ export function AddPage({ currentTheme }) {
     e.preventDefault();
     const newTovar = { ...formData, artist: [artist.value] };
 
-    // Validation: Check for empty fields and validate price
     const hasEmptyProperties = Object.values(newTovar).some((value) => value === "");
     const thisPrice = parseFloat(newTovar.price);
     const wrongPrice = thisPrice < 10 || thisPrice > 50 || isNaN(thisPrice);
@@ -46,7 +45,6 @@ export function AddPage({ currentTheme }) {
       return;
     }
 
-    // POST request to add a new Tovar
     try {
       const response = await fetch(tovarListURL, {
         method: "POST",
@@ -61,7 +59,7 @@ export function AddPage({ currentTheme }) {
       }
 
       alert("Релиз успешно добавлен!");
-      setFormData(emptyFormData);  // Reset form after successful submission
+      setFormData(emptyFormData); 
 
     } catch (error) {
       console.error("Ошибка:", error);

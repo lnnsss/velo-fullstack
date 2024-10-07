@@ -5,10 +5,9 @@ import { LoginPage } from "../../components/Pages/LoginPage/LoginPage";
 
 export default function Login() {
   const { currentTheme, setCurrentTheme } = useContext(AppContext);
-  const { cartList, setCartList } = useContext(AppContext);
 
   return (
-    <PageLayout title="Авторизация" currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} cartList={cartList}>
+    <PageLayout title="Авторизация" currentTheme={currentTheme} setCurrentTheme={setCurrentTheme}>
       <LoginPage currentTheme={currentTheme} />
     </PageLayout>
   );

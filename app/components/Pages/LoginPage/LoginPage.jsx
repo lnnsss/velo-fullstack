@@ -3,6 +3,7 @@ import s from "./LoginPage.module.css";
 import { loginURL } from "../../constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { getUserIsAdmin } from "../../../getUserIsAdmin";
 
 export function LoginPage({ currentTheme }) {
   const router = useRouter();
@@ -52,13 +53,10 @@ export function LoginPage({ currentTheme }) {
 
       setFormData(emptyFormData);
 
-      // расшифровка токена и получение полезной информации
-      const parts = data.token.split(".");
-      const payload = JSON.parse(atob(parts[1])); // полезная информация
+      // действие взависимости от роли пользователя
+      const userIsAdmin = getUserIsAdmin(data.token);
+      userIsAdmin ? router.push("/admin") : router.push("/account");
 
-      const userRoles = payload.roles; // роли пользователя
-      console.log();
-      userRoles.includes("ADMIN") ? router.push("/admin") : router.push("/account");
     } catch (error) {
       setErrorMessage(error.message);
       setSuccessMessage("");

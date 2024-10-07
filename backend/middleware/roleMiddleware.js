@@ -3,7 +3,7 @@ const secret = process.env.SECRET;
 
 module.exports = (roles) => {
   return (req, res, next) => {
-    if ((req.method = "OPTIONS")) {
+    if ((req.method == "OPTIONS")) {
       next();
     }
 

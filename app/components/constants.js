@@ -1,14 +1,14 @@
 // ссылка на сервер к tovarList
-export const tovarListURL = 'http://localhost:3001/tovars';
+export const tovarListURL = "http://localhost:3001/tovars";
 
 // ссылка на сервер к cartList
-export const cartListURL = 'http://localhost:3001/carts';
+export const cartListURL = "http://localhost:3001/carts";
 
 // ссылка на сервер к registration
-export const registrationURL = 'http://localhost:3001/auth/registration';
+export const registrationURL = "http://localhost:3001/auth/registration";
 
 // ссылка на сервер к login
-export const loginURL = 'http://localhost:3001/auth/login';
+export const loginURL = "http://localhost:3001/auth/login";
 
 // Тема
 export const theme = false; // светлая - false, темная - true

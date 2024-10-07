@@ -18,19 +18,6 @@ const generateAccessToken = (id, roles, cart_id) => {
   return jwt.sign(payload, secret, { expiresIn: "24h" });
 };
 
-// Получение всех пользователей
-const getUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    return res.json(users); // Добавлено return
-  } catch (e) {
-    console.error(e);
-    return res
-      .status(500)
-      .json({ message: "Ошибка при получении пользователей" }); // Добавлено return
-  }
-};
-
 // Регистрация
 const registration = async (req, res) => {
   const session = await mongoose.startSession(); // Начало сессии
@@ -128,7 +115,6 @@ const login = async (req, res) => {
 };
 
 module.exports = {
-  getUsers,
   registration,
   login,
 };

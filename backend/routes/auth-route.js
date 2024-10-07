@@ -1,12 +1,8 @@
 const express = require("express");
-const { getUsers, registration, login } = require("../controllers/auth-controller");
+const { registration, login } = require("../controllers/auth-controller");
 const {check} = require('express-validator');
-const roleMiddleware = require("../middleware/roleMiddleware");
 
 const router = express.Router();
-
-// Получение всех пользователей
-router.get('/users', roleMiddleware(['USER']), getUsers);
 
 // Регистрация c валидацией
 router.post('/registration', [

@@ -48,11 +48,11 @@ export function AdminHeaderMenu({
   setCurrentTheme,
   burgerActive,
 }) {
-  const userIsLoggedIn = useAuth();
 
   return (
     <nav className={`${s.header_menu} ${burgerActive && s.active}`}>
       <ul className={s.header_list}>
+        <HeaderLink href="/admin/users">Пользователи</HeaderLink>
         <HeaderLink href="/admin/add">Добавить</HeaderLink>
         <LogOutHeaderLink />
         <li className={s.header_link} id="themeBtn">

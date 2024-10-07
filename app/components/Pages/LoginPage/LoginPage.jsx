@@ -3,7 +3,7 @@ import s from "./LoginPage.module.css";
 import { loginURL } from "../../constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { getUserIsAdmin } from "../../../getUserIsAdmin";
+import { getUserIsAdmin } from "../../../utils/getUserIsAdmin";
 
 export function LoginPage({ currentTheme }) {
   const router = useRouter();
@@ -56,7 +56,6 @@ export function LoginPage({ currentTheme }) {
       // действие взависимости от роли пользователя
       const userIsAdmin = getUserIsAdmin(data.token);
       userIsAdmin ? router.push("/admin") : router.push("/account");
-
     } catch (error) {
       setErrorMessage(error.message);
       setSuccessMessage("");
@@ -92,7 +91,7 @@ export function LoginPage({ currentTheme }) {
                 Пароль
               </label>
               <input
-                type="password" 
+                type="password"
                 id="password"
                 name="password"
                 className={s.addFormInput}

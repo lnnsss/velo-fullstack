@@ -2,7 +2,7 @@ import { AdminHeader } from "../components/Header/AdminHeader";
 import { Footer } from "../components/Footer/Footer";
 import clsx from "clsx";
 import Head from "next/head";
-import { getUserIsAdmin } from "../getUserIsAdmin";
+import { getUserIsAdmin } from "../utils/getUserIsAdmin";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 

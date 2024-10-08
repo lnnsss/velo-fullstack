@@ -1,5 +1,5 @@
 const express = require("express");
-const { getUsers, getUserByID, deleteUser } = require("../controllers/admin-controller");
+const { getUsers, getUserByID, deleteUser, getUserRoles, addUserRole, delUserRole } = require("../controllers/admin-controller");
 
 const router = express.Router();
 
@@ -9,7 +9,16 @@ router.get("/users", getUsers);
 // Получение одного пользователя по id
 router.get("/users/:id", getUserByID);
 
-// Удалениние пользователя по id
+// Удаление пользователя по id
 router.delete("/users/:id", deleteUser);
+
+// Получение всех ролей пользователя по id
+router.get('/users/:id/roles', getUserRoles);
+
+// Добавление роли пользователю по id
+router.post('/users/:id/roles', addUserRole);
+
+// Отнять роль у пользователя по id
+router.delete('/users/:id/roles', delUserRole);
 
 module.exports = router;

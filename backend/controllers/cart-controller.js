@@ -44,7 +44,7 @@ const updateCart = (req, res) => {
       .catch((err) => handleError(res, err));
 };
 
-// Добавление товаров по id корзины
+// Получение товаров корзины по id корзины
 const getCartItems = (req, res) => {
     Cart.findById(req.params.id)
       .then((cart) => {

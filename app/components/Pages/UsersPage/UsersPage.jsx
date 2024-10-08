@@ -46,7 +46,7 @@ export function UsersPage({ currentTheme }) {
     setInputValue(e.target.value);
   }
 
-  // функция для удаления пользователя по айди
+  // удаление пользователя по айди
   const deleteUserById = async (id) => {
     try {
       const response = await fetch(`${userListURL}/${id}`, {
@@ -62,6 +62,50 @@ export function UsersPage({ currentTheme }) {
       }
 
       setUserListData((prevData) => prevData.filter((user) => user.id !== id));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  // сделать пользователя администратором
+  const addAdmin = async (id) => {
+    try {
+      const response = await fetch(`${userListURL}/${id}/roles`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          role: "ADMIN",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  // отнять у пользователя админку
+  const delAdmin = async (id) => {
+    try {
+      const response = await fetch(`${userListURL}/${id}/roles`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          role: "ADMIN",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -107,10 +151,18 @@ export function UsersPage({ currentTheme }) {
         style={customStyles}
       >
         {modalType === "addAdminModal" && (
-          <AddAdminModal closeModal={closeModal} />
+          <AddAdminModal
+            closeModal={closeModal}
+            addAdmin={addAdmin}
+            userId={modalData}
+          />
         )}
         {modalType === "delAdminModal" && (
-          <DelAdminModal closeModal={closeModal} />
+          <DelAdminModal
+            closeModal={closeModal}
+            delAdmin={delAdmin}
+            userId={modalData}
+          />
         )}
         {modalType === "delUserModal" && (
           <DelUserModal

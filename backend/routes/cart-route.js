@@ -23,7 +23,7 @@ router.post("/carts", addCart);
 // Обновление одной корзины по id
 router.patch("/carts/:id", updateCart);
 
-// Добавление товаров по id корзины
+// Получение товаров корзины по id корзины
 router.get('/carts/:id/items', getCartItems);
 
 // Добавление товара в корзину по id

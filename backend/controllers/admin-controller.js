@@ -1,20 +1,39 @@
 const User = require("../models/User");
 
-// Получение всех пользователей
-const getUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    return res.json(users); 
-  } catch (e) {
-    console.error(e);
-    return res
-      .status(500)
-      .json({ message: "Ошибка при получении пользователей" });
-  }
+// Функция для вывода ошибок
+handleError = (res, error) => {
+  res.status(500).json({ error });
 };
 
-// Удаление одного пользователя по id
+// Получение всех пользователей
+const getUsers = async (req, res) => {
+  User.find()
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => handleError(res, err));
+};
+
+// Получение одного пользователя по id
+const getUserByID = async (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => handleError(res, err));
+};
+
+// Удалениние одного пользователя по id
+const deleteUser = async (req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => handleError(res, err));
+};
 
 module.exports = {
-  getUsers
+  getUsers,
+  getUserByID,
+  deleteUser,
 };

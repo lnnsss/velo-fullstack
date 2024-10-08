@@ -1,8 +1,6 @@
-import { usePopupManager } from "../../../../hooks/usePopUpManager";
 import s from "./../UsersPage.module.css";
 
-export function User({ user }) {
-  const { handleDelUserPopupOpen } = usePopupManager();
+export function User({ user, openModal }) {
   const userIsAdmin = user.roles.includes("ADMIN");
 
   return (
@@ -13,36 +11,48 @@ export function User({ user }) {
       <div className={s.userMenu}>
         <span className={s.userRole}>{userIsAdmin ? `Admin` : `User`}</span>
         <div className={s.btns}>
-          {userIsAdmin ? <DelAdminBtn /> : <AddAdminBtn />}
-          <DelUserBtn handleDelUserPopupOpen={handleDelUserPopupOpen} />
+          {userIsAdmin ? (
+            <DelAdminBtn openModal={openModal} userId={user._id} />
+          ) : (
+            <AddAdminBtn openModal={openModal} userId={user._id} />
+          )}
+          <DelUserBtn openModal={openModal} userId={user._id} />
         </div>
       </div>
     </div>
   );
 }
 
-function AddAdminBtn() {
+function AddAdminBtn({ openModal, userId }) {
   return (
-    <button className={s.btn} title="Назначить администратором">
+    <button
+      className={s.btn}
+      title="Назначить администратором"
+      onClick={() => openModal({ type: "addAdminModal", userId: userId })}
+    >
       +
     </button>
   );
 }
 
-function DelAdminBtn() {
+function DelAdminBtn({ openModal, userId }) {
   return (
-    <button className={s.btn} title="Отстранить от администрации">
+    <button
+      className={s.btn}
+      title="Отстранить от администрации"
+      onClick={() => openModal({ type: "delAdminModal", userId: userId })}
+    >
       &#8722;
     </button>
   );
 }
 
-function DelUserBtn({ handleDelUserPopupOpen }) {
+function DelUserBtn({ openModal, userId }) {
   return (
     <button
       className={s.btn}
       title="Удалить аккаунт пользователя"
-      onClick={() => handleDelUserPopupOpen()}
+      onClick={() => openModal({ type: "delUserModal", userId: userId })}
     >
       &#215;
     </button>

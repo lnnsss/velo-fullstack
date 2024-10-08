@@ -132,6 +132,46 @@
   filter: brightness(80%);
 }
 
+/*----popup---------------------------------*/
+
+.popupTittle {
+  width: 80%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+.popupBtn {
+  margin: 10px 0 0 0;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.5s;
+}
+.redBtn {
+  background-color: var(--red);
+  color: var(--white);
+}
+.greyBtn {
+  border: 2px solid var(--grey);
+}
+.popupBtns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.popupBtns button {
+  width: 50%;
+}
+.popupBtn:hover {
+  filter: brightness(120%);
+}
+.popupBtn:active {
+  transition: 0.2s;
+  filter: brightness(90%);
+}
+
 /*----media---------------------------------*/
 
 @media (max-width: 768px) {

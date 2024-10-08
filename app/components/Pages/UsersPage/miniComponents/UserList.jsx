@@ -3,8 +3,7 @@ import s from "./../UsersPage.module.css";
 import { User } from "./User";
 import { userListURL } from "../../../constants";
 
-export function UserList({ inputValue, activeFilter }) {
-  const [userListData, setUserListData] = useState([]); // сюда фетчим
+export function UserList({ inputValue, activeFilter, openModal, userListData, setUserListData }) {
   const [userList, setUserList] = useState([]);
   const token = localStorage.getItem("veloJWT");
 
@@ -16,7 +15,7 @@ export function UserList({ inputValue, activeFilter }) {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         });
         if (!response.ok) {
@@ -63,7 +62,11 @@ export function UserList({ inputValue, activeFilter }) {
     (a, b) => b.roles.includes("ADMIN") - a.roles.includes("ADMIN")
   ); // сортировка: сначала админы
   const displayUsers = sortedUsers.map((user, i) => (
-    <User user={user} key={i} />
+    <User
+      user={user}
+      key={i}
+      openModal={openModal}
+    />
   ));
 
   return (

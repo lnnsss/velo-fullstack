@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { PageLayout } from "../components/PageLayout";
 import { MainPage } from "../components/Pages/MainPage/MainPage";
 import { useContext } from "react";

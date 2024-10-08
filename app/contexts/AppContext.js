@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import {
-  filterList,
+  catalogFilterList,
   theme
 } from "../components/constants";
 
@@ -8,7 +8,7 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState(theme); //  тема
-  const [activeFilter, setActiveFilter] = useState(filterList[0]); //  фильтры для перебора товаров на странице catalog; по умолчанию "All"
+  const [activeFilter, setActiveFilter] = useState(catalogFilterList[0]); //  фильтры для перебора товаров на странице catalog; по умолчанию "All"
 
   return (
     <AppContext.Provider

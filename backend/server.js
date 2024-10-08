@@ -9,6 +9,7 @@ const tovarRoutes = require("./routes/tovar-route");
 const cartRoutes = require("./routes/cart-route");
 const authRoutes = require("./routes/auth-route");
 const adminRoutes = require("./routes/admin-route");
+const roleMiddleware = require("./middleware/roleMiddleware");
 
 const PORT = 3001;
 
@@ -19,7 +20,7 @@ app.use(cors()); // Включает CORS для разрешения кросс
 app.use(tovarRoutes);
 app.use(cartRoutes);
 app.use("/auth", authRoutes);
-app.use("/admin", adminRoutes);
+app.use("/admin", roleMiddleware(["ADMIN"]), adminRoutes);
 
 mongoose
   .connect(mongoDbURL)

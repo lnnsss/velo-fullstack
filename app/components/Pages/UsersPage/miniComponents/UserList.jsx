@@ -6,12 +6,19 @@ import { userListURL } from "../../../constants";
 export function UserList({ inputValue, activeFilter }) {
   const [userListData, setUserListData] = useState([]); // сюда фетчим
   const [userList, setUserList] = useState([]);
+  const token = localStorage.getItem("veloJWT");
 
   // Получение userListData
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(userListURL);
+        const response = await fetch(userListURL, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, 
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -52,8 +59,12 @@ export function UserList({ inputValue, activeFilter }) {
     }
   }, [userListData, inputValue, activeFilter]);
 
-  const sortedUsers = userList.sort((a, b) => (b.roles.includes("ADMIN") - a.roles.includes("ADMIN"))); // сортировка: сначала админы
-  const displayUsers = sortedUsers.map((user, i) => <User user={user} key={i} />);
+  const sortedUsers = userList.sort(
+    (a, b) => b.roles.includes("ADMIN") - a.roles.includes("ADMIN")
+  ); // сортировка: сначала админы
+  const displayUsers = sortedUsers.map((user, i) => (
+    <User user={user} key={i} />
+  ));
 
   return (
     <div className={s.userList} id="userList">

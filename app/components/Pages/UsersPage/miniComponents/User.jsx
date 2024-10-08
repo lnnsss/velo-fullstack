@@ -1,6 +1,8 @@
+import { usePopupManager } from "../../../../hooks/usePopUpManager";
 import s from "./../UsersPage.module.css";
 
 export function User({ user }) {
+  const { handleDelUserPopupOpen } = usePopupManager();
   const userIsAdmin = user.roles.includes("ADMIN");
 
   return (
@@ -12,7 +14,7 @@ export function User({ user }) {
         <span className={s.userRole}>{userIsAdmin ? `Admin` : `User`}</span>
         <div className={s.btns}>
           {userIsAdmin ? <DelAdminBtn /> : <AddAdminBtn />}
-          <DelUserBtn />
+          <DelUserBtn handleDelUserPopupOpen={handleDelUserPopupOpen} />
         </div>
       </div>
     </div>
@@ -35,6 +37,14 @@ function DelAdminBtn() {
   );
 }
 
-function DelUserBtn() {
-  return <button className={s.btn} title="Удалить аккаунт пользователя" >&#215;</button>;
+function DelUserBtn({ handleDelUserPopupOpen }) {
+  return (
+    <button
+      className={s.btn}
+      title="Удалить аккаунт пользователя"
+      onClick={() => handleDelUserPopupOpen()}
+    >
+      &#215;
+    </button>
+  );
 }

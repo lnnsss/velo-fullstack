@@ -13,6 +13,8 @@ const getUsers = async (req, res) => {
   }
 };
 
+// Удаление одного пользователя по id
+
 module.exports = {
   getUsers
 };

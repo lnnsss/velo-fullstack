@@ -1,34 +1,32 @@
 import { useEffect, useState } from "react";
 import s from "./../UsersPage.module.css";
 import { User } from "./User";
+import { userListURL } from "../../../constants";
 
-export function UserList({ inputValue }) {
-  const [userListData, setUserListData] = useState([
-    {
-      username: "lnnsss",
-      roles: ["USER", "ADMIN"],
-    },
-    {
-      username:
-        "TIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMURTIMUR",
-      roles: ["USER"],
-    },
-    {
-      username: "rusel116",
-      roles: ["USER"],
-    },
-    {
-      username: "obladaet",
-      roles: ["USER"],
-    },
-    {
-      username: "oxxxymironFromLondon",
-      roles: ["USER"],
-    },
-  ]);
+export function UserList({ inputValue, activeFilter }) {
+  const [userListData, setUserListData] = useState([]); // сюда фетчим
   const [userList, setUserList] = useState([]);
 
-  // Фильтрация юзеров по инпуту
+  // Получение userListData
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(userListURL);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+
+        setUserListData(data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Фильтрация юзеров по inputValue
   useEffect(() => {
     if (userListData.length > 0) {
       const filteredList = userListData.filter((user) => {
@@ -36,16 +34,26 @@ export function UserList({ inputValue }) {
 
         if (inputValue) {
           isMatch =
-            user.username.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1;
+            user.username.toLowerCase().indexOf(inputValue.toLowerCase()) !==
+            -1;
+        }
+
+        if (activeFilter === "ADMIN") {
+          isMatch = user.roles.includes("ADMIN") && isMatch;
+        }
+
+        if (activeFilter === "USER") {
+          isMatch = !user.roles.includes("ADMIN") && isMatch;
         }
 
         return isMatch;
       });
       setUserList(filteredList);
     }
-  }, [userListData, inputValue]);
+  }, [userListData, inputValue, activeFilter]);
 
-  const displayUsers = userList.map((user, i) => <User user={user} key={i} />);
+  const sortedUsers = userList.sort((a, b) => (b.roles.includes("ADMIN") - a.roles.includes("ADMIN"))); // сортировка: сначала админы
+  const displayUsers = sortedUsers.map((user, i) => <User user={user} key={i} />);
 
   return (
     <div className={s.userList} id="userList">

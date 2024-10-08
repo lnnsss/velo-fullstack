@@ -1,8 +1,7 @@
 import { useState } from "react";
 import s from "./../UsersPage.module.css";
 
-export function Filters({ filterList }) {
-  const [activeFilter, setActiveFilter] = useState("ALL");
+export function Filters({ filterList, activeFilter, setActiveFilter }) {
   const displayFilters = filterList.map((filter, i) => (
     <Filter
       filterName={filter}

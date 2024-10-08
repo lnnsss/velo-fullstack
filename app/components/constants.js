@@ -10,6 +10,9 @@ export const registrationURL = "http://localhost:3001/auth/registration";
 // ссылка на сервер к login
 export const loginURL = "http://localhost:3001/auth/login";
 
+// ссылка на сервер к userList
+export const userListURL = "http://localhost:3001/admin/users";
+
 // Тема
 export const theme = false; // светлая - false, темная - true
 

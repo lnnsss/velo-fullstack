@@ -12,7 +12,7 @@ export function User({ user }) {
         <span className={s.userRole}>{userIsAdmin ? `Admin` : `User`}</span>
         <div className={s.btns}>
           {userIsAdmin ? <DelAdminBtn /> : <AddAdminBtn />}
-          <button className={s.btn}>&#215;</button>
+          <DelUserBtn />
         </div>
       </div>
     </div>
@@ -33,4 +33,8 @@ function DelAdminBtn() {
       &#8722;
     </button>
   );
+}
+
+function DelUserBtn() {
+  return <button className={s.btn} title="Удалить аккаунт пользователя" >&#215;</button>;
 }

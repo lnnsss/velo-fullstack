@@ -7,6 +7,7 @@ import { UserList } from "./miniComponents/UserList";
 
 export function UsersPage({ currentTheme }) {
   const [inputValue, setInputValue] = useState("");
+  const [activeFilter, setActiveFilter] = useState("ALL");
   function handleChangeInputValue(e) {
     setInputValue(e.target.value);
   }
@@ -18,14 +19,18 @@ export function UsersPage({ currentTheme }) {
           <div className={s.userHeader}>
             <h2 className={s.tittle}>Пользователи</h2>
             <div className={s.filters}>
-              <Filters filterList={adminUsersFilterList} />
+              <Filters
+                filterList={adminUsersFilterList}
+                activeFilter={activeFilter}
+                setActiveFilter={setActiveFilter}
+              />
               <FilterInput
                 inputValue={inputValue}
                 handleChangeInputValue={handleChangeInputValue}
               />
             </div>
           </div>
-          <UserList inputValue={inputValue} />
+          <UserList inputValue={inputValue} activeFilter={activeFilter} />
         </div>
       </div>
     </div>

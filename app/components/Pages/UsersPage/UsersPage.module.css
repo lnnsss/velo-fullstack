@@ -33,7 +33,8 @@
   justify-content: space-between;
   gap: 20px;
 }
-.filter, .input {
+.filter,
+.input {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,7 +61,8 @@
   font-size: 18px;
   color: var(--grey);
 }
-.filter:hover, .input:hover {
+.filter:hover,
+.input:hover {
   border-color: var(--red);
 }
 
@@ -76,13 +78,21 @@
   justify-content: space-between;
   padding: 10px 20px;
 }
+.user:nth-child(2n + 1) {
+  background-color: var(--thirdGrey);
+}
+.user:hover {
+  background-color: var(--secondWhite);
+}
 .user:not(:last-child) {
   border-bottom: 1px solid var(--red);
 }
-.username, .userRole {
+.username,
+.userRole {
   font-size: 20px;
   font-weight: 500;
   color: var(--black);
+  transition: 0.5s;
 }
 .username {
   max-width: 300px;
@@ -133,6 +143,18 @@
 .nightTheme {
   color: var(--white);
   background-color: var(--secondBlack);
+}
+
+/*----nightTheme--user-------------------------------*/
+.nightTheme .user:nth-child(2n + 1) {
+  background-color: var(--fourthBlack);
+}
+.nightTheme .user:hover {
+  background-color: var(--thirdBlack);
+}
+.nightTheme .username,
+.nightTheme .userRole {
+  color: var(--white);
 }
 
 /*----nightTheme--inputs-------------------------------*/

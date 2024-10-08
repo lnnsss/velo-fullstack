@@ -19,7 +19,7 @@ app.use(cors()); // Включает CORS для разрешения кросс
 app.use(tovarRoutes);
 app.use(cartRoutes);
 app.use("/auth", authRoutes);
-app.use(adminRoutes);
+app.use("/admin", adminRoutes);
 
 mongoose
   .connect(mongoDbURL)

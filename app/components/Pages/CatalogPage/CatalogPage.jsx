@@ -2,7 +2,7 @@ import { CatalogLayout } from "./miniComponents/CatalogLayout";
 import { CatalogHeader } from "./miniComponents/CatalogHeader";
 import { Tovars } from "./miniComponents/Tovars";
 import { useState } from "react";
-import { filterList } from "../../constants";
+import { catalogFilterList } from "../../constants";
 
 export function CatalogPage({ currentTheme, activeFilter, setActiveFilter }) {
   // Фильтр по введенным данным
@@ -14,7 +14,7 @@ export function CatalogPage({ currentTheme, activeFilter, setActiveFilter }) {
   return (
     <CatalogLayout currentTheme={currentTheme}>
       <CatalogHeader
-        filterList={filterList}
+        filterList={catalogFilterList}
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
         inputValue={inputValue}

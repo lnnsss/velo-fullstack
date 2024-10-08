@@ -5,7 +5,7 @@ export function Filter({ children, activeFilter, setActiveFilter }) {
     <div
       key={children}
       className={`${s.filter} ${
-        activeFilter === children ? `${s.active}` : ""
+        activeFilter === children ? s.active : ""
       }`}
       onClick={() => setActiveFilter(children)}
     >

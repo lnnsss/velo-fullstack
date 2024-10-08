@@ -21,6 +21,105 @@
   padding: 100px 0 40px 0;
   transition: 0.5s;
 }
+.userHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.filter, .input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--grey);
+  border-radius: 40px;
+  background-color: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  transition: 0.5s;
+}
+.filter {
+  padding: 6px 18px;
+}
+.filter.active {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+.input {
+  padding: 5px 15px;
+}
+.input::placeholder {
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--grey);
+}
+.filter:hover, .input:hover {
+  border-color: var(--red);
+}
+
+.userList {
+  margin: 25px 0 0 0;
+  width: 100%;
+  min-height: 100%;
+  border: 1px solid var(--red);
+}
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.user:not(:last-child) {
+  border-bottom: 1px solid var(--red);
+}
+.username, .userRole {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--black);
+}
+.username {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 32px;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.btn:hover {
+  filter: brightness(120%);
+}
+.btn:active {
+  transition: 0.1s;
+  filter: brightness(80%);
+}
 
 /*----media---------------------------------*/
 

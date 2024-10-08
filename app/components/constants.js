@@ -14,7 +14,10 @@ export const loginURL = "http://localhost:3001/auth/login";
 export const theme = false; // светлая - false, темная - true
 
 // Фильтры для каталога
-export const filterList = ["All", "Ru", "En", "< 30$", "> 30$"];
+export const catalogFilterList = ["All", "Ru", "En", "< 30$", "> 30$"];
+
+// Фильтры для юзеров админки
+export const adminUsersFilterList = ["ALL", "USER", "ADMIN"];
 
 // Условие цены релиза
 export const priceCondition = 35; // null или  цена (например: 40)

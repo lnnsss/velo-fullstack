@@ -17,7 +17,7 @@ const tovarSchema = new Schema({
   },
   img: [String],
   lang: String,
-  date: String,
+  date: Date,
   tracklist: [
     {
         trackTitle: String,

@@ -15,6 +15,11 @@ export function TovarHeader({ tovar }) {
     addToCart(cartId, tovar._id, 1, tovar.price);
   };
 
+  // Форматируем дату в строку
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const dateObject = new Date(tovar.date);
+  const formattedDate = dateObject.toLocaleDateString('ru-RU', options);
+
   return (
     <div className={s.tovar_header}>
       <div
@@ -41,7 +46,7 @@ export function TovarHeader({ tovar }) {
         <div className={s.tovar_header_text}>
           <h2 className={s.tovar_header_title}>{tovar.title}</h2>
           <h2 className={s.tovar_header_artist}>{tovar.artist.join(", ")}</h2>
-          <h2 className={s.tovar_header_date}>{tovar.date}</h2>
+          <h2 className={s.tovar_header_date}>{formattedDate}</h2>
           <button
             id={`btn_${tovar.id}`}
             className={`${s.tovar_header_button} ${s.buyButton}`}

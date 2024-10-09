@@ -3,6 +3,9 @@
   height: 100%;
 }
 .pa1_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   max-width: var(--maxWidth);
   margin: 0px auto;
   padding: 0px 15px;
@@ -11,94 +14,164 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-}
-.tittle {
-  font-size: 32px;
-  font-weight: 500;
+  gap: 20px;
 }
 .addPage {
   padding: 100px 0 40px 0;
   transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 60px;
 }
-.addForm {
-  margin: 40px auto 0 auto;
-  width: 500px;
-  height: 520px;
-  border: 2px solid var(--grey);
-  border-radius: 20px;
+.addPage__title {
+  font-size: 32px;
+  font-weight: 500;
 }
-.addForm_container {
-  height: 100%;
-  width: 100%;
-  padding: 20px;
+.addPage__form {
   display: flex;
   flex-direction: column;
-}
-.addNewAlbumBtn {
-  margin: 0 auto;
-  height: 50px;
-  background-color: inherit;
-  border: 2px solid var(--green);
+  justify-content: center;
+  border: 2px solid var(--grey);
+  width: 1040px;
+  padding: 40px;
   border-radius: 10px;
-  width: 80%;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--green);
+  gap: 40px;
+}
+.form__point {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.form__point__title {
+  font-size: 24px;
+  font-weight: 400;
+}
+.form__point__input {
+  width: 100%;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+  padding: 10px;
+}
+.form__point__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: inherit;
+  cursor: pointer;
   transition: 0.5s;
 }
-.addNewAlbumBtn:hover {
-  background-color: var(--green);
-  color: var(--white);
-  width: 80%;
+.form__point__button:hover {
+  filter: brightness(120%);
 }
-.addNewAlbumBtn:active {
+.form__point__button:active {
   filter: brightness(80%);
-  transition: 0s;
+  transition: 0.2s;
 }
-.addFormInput {
-  width: 100%;
-  height: 50px;
+.form__point__button__addCover::file-selector-button {
   background-color: inherit;
-  border: 2px solid var(--grey);
-  border-radius: 10px;
-  padding-left: 10px;
-  margin: 20px 0;
+  border: 1px solid var(--grey);
+  padding: 10px 80px;
 }
-.addFormLabel {
-  font-size: 24px;
-  text-align: left;
+.form__dateAndLang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.formLang {
-  margin: 20px 0;
+.form__dateAndLang__point {
+  width: 48%;
+}
+.form__point__input__select {
+  background-color: inherit;
+}
+.form__point__header {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.formLang label {
+.form__point__header__counter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 400;
+}
+.header__counter__title {
+  font-size: 20px;
+}
+.header__counter__plus {
+  font-size: 32px;
+  background-color: inherit;
+  cursor: pointer;
+}
+.form__point__content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid var(--grey);
+}
+.content__element {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 5px 10px;
+}
+.content__element:not(:last-child) {
+  border-bottom: 2px solid var(--grey);
+}
+.content__element__input {
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+}
+.content__element__button {
+  background-color: inherit;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--grey);
+  cursor: pointer;
+}
+.form__button {
+  width: 40%;
+  margin: 0 auto;
+  background-color: inherit;
+  border: 2px solid var(--green);
+  border-radius: 20px;
+  padding: 10px 80px;
   font-size: 18px;
-  margin: 0 25px 0 5px;
+  font-weight: 500;
+  color: var(--green);
+  transition: 0.5s;
+}
+.form__button:hover {
+  background-color: var(--green);
+  color: var(--white);
+}
+.form__button:active {
+  transition: 0.2s;
+  filter: brightness(80%);
 }
 
 /*----media---------------------------------*/
 
+@media (max-width: 1044px) {
+}
+
 @media (max-width: 768px) {
-  .addPage {
-    padding: 70px 0 40px 0;
-  }
-  .addForm {
-    width: 360px;
-  }
 }
 
 @media (max-width: 472px) {
-  .addForm {
-    margin: 40px auto 0 auto;
-    width: 280px;
-    height: 460px;
-    border: 2px solid var(--grey);
-    border-radius: 20px;
-  }
 }
 
 /*----nightTheme---------------------------------*/

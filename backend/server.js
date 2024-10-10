@@ -6,6 +6,7 @@ require("dotenv").config(); // Загружает переменные окру�
 const mongoDbURL = process.env.MONGODB_URL;
 
 const tovarRoutes = require("./routes/tovar-route");
+const adminTovarRoutes = require("./routes/admin-tovar-route");
 const cartRoutes = require("./routes/cart-route");
 const authRoutes = require("./routes/auth-route");
 const adminRoutes = require("./routes/admin-route");
@@ -21,6 +22,7 @@ app.use(tovarRoutes);
 app.use(cartRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", roleMiddleware(["ADMIN"]), adminRoutes);
+app.use("/admin", roleMiddleware(["ADMIN"]), adminTovarRoutes);
 
 mongoose
   .connect(mongoDbURL)

@@ -18,17 +18,8 @@ const tovarSchema = new Schema({
   img: [String],
   lang: String,
   date: Date,
-  tracklist: [
-    {
-      id: Number,
-      trackTitle: String,
-      feats: [String],
-    },
-  ],
-  description: {
-    id: Number,
-    text: String
-  },
+  trackList: [{ id: Number, trackTitle: String, feats: [String] }],
+  description: [{ id: Number, text: String }],
   yandex: String,
 });
 

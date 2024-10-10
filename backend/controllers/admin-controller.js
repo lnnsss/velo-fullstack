@@ -23,7 +23,7 @@ const getUserByID = async (req, res) => {
     .catch((err) => handleError(res, err));
 };
 
-// Удалениние одного пользователя по id
+// Удаление одного пользователя по id
 const deleteUser = async (req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then((result) => {

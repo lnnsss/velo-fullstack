@@ -1,5 +1,4 @@
 import s from "./../UsersPage.module.css";
-import { useState } from "react";
 
 export function FilterInput({ inputValue, handleChangeInputValue }) {
   return (

@@ -20,12 +20,16 @@ const tovarSchema = new Schema({
   date: Date,
   tracklist: [
     {
-        trackTitle: String,
-        feats: [String]
-    }
+      id: Number,
+      trackTitle: String,
+      feats: [String],
+    },
   ],
-  description: [String],
-  yandex: String
+  description: {
+    id: Number,
+    text: String
+  },
+  yandex: String,
 });
 
 const Tovar = mongoose.model("Tovar", tovarSchema);

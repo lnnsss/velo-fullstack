@@ -53,7 +53,7 @@ export function AdminHeaderMenu({
     <nav className={`${s.header_menu} ${burgerActive && s.active}`}>
       <ul className={s.header_list}>
         <HeaderLink href="/admin/users">Пользователи</HeaderLink>
-        <HeaderLink href="/admin/add">Добавить</HeaderLink>
+        <HeaderLink href="/admin/add">Добавить релиз</HeaderLink>
         <LogOutHeaderLink />
         <li className={s.header_link} id="themeBtn">
           <Image

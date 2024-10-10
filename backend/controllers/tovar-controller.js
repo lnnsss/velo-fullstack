@@ -1,4 +1,4 @@
-const Tovar = require("./../models/tovar");
+const Tovar = require("../models/Tovar");
 
 // Функция для вывода ошибок
 handleError = (res, error) => {

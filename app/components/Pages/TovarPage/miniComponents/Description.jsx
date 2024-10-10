@@ -1,10 +1,9 @@
 import s from "./../TovarPage.module.css";
 
-export function Description({ tovar }) {
-  // Треклист товара
-  const thisDescription = tovar.description;
-  const displayDescription = thisDescription.map((el, i) => (
-    <Paragraph paragraph={el} key={i} />
+export function Description({ description }) {
+
+  const displayDescription = description.map((el) => (
+    <Paragraph paragraph={el.text} key={el.id} />
   ));
 
   return (

@@ -1,10 +1,10 @@
 import s from "./../AddPage.module.css";
 
-export function AlbumLangInput() {
+export function AlbumLangInput({ albumLang, handleChangeInputValue }) {
   return (
     <div className={`${s.form__point} ${s.form__dateAndLang__point}`}>
       <label
-        for="albumLang"
+        htmlFor="albumLang"
         className={`${s.form__point__title} ${s.form__dateAndLang__point__title}`}
       >
         Язык
@@ -13,9 +13,11 @@ export function AlbumLangInput() {
         name="albumLang"
         className={`${s.form__point__input} ${s.form__point__input__select}`}
         id="albumLang"
+        value={albumLang}
+        onChange={handleChangeInputValue}
       >
-        <option value="ru">Русский</option>
-        <option value="en">Английский</option>
+        <option value="Ru">Русский</option>
+        <option value="En">Английский</option>
       </select>
     </div>
   );

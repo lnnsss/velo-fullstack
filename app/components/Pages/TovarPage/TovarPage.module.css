@@ -163,9 +163,11 @@
   text-align-last: left;
   border-left: 1px solid var(--grey);
   border-right: 1px solid var(--grey);
-  border-bottom: 1px solid var(--grey);
   display: flex;
   align-items: center;
+}
+.track:not(:nth-last-child(-n+2)) {
+  border-bottom: 1px solid var(--grey);
 }
 .trackTitle {
   width: 100%;
@@ -332,7 +334,8 @@
 }
 
 @media (max-width: 472px) {
-  .otherCovers_container, .moreFrom_container {
+  .otherCovers_container,
+  .moreFrom_container {
     flex-direction: column;
   }
   .fullScreenCover {

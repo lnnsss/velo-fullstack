@@ -1,9 +1,5 @@
+const handleError = require("../handleError");
 const Cart = require("./../models/Cart");
-
-// Функция для вывода ошибок
-handleError = (res, error) => {
-  res.status(500).json({ error });
-};
 
 // Получение одной корзины по id
 const getCart = (req, res) => {

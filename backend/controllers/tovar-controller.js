@@ -1,9 +1,5 @@
+const handleError = require("../handleError");
 const Tovar = require("../models/Tovar");
-
-// Функция для вывода ошибок
-handleError = (res, error) => {
-  res.status(500).json({ error });
-};
 
 // Получение всех товаров
 const getTovars = (req, res) => {

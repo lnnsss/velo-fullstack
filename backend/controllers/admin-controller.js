@@ -1,9 +1,5 @@
+const handleError = require("../handleError");
 const User = require("../models/User");
-
-// Функция для вывода ошибок
-handleError = (res, error) => {
-  res.status(500).json({ error });
-};
 
 // Получение всех пользователей
 const getUsers = async (req, res) => {

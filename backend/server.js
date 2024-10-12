@@ -12,7 +12,7 @@ const authRoutes = require("./routes/auth-route");
 const adminRoutes = require("./routes/admin-route");
 const roleMiddleware = require("./middleware/roleMiddleware");
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.json());

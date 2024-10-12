@@ -1,20 +1,22 @@
+const host = "https://velo-fullstack-back.vercel.app"; //http://localhost:3001
+
 // ссылка на сервер к tovarList
-export const tovarListURL = "http://localhost:3001/tovars";
+export const tovarListURL = `${host}/tovars`;
 
 // ссылка на сервер к cartList
-export const cartListURL = "http://localhost:3001/carts";
+export const cartListURL = `${host}/carts`;
 
 // ссылка на сервер к registration
-export const registrationURL = "http://localhost:3001/auth/registration";
+export const registrationURL = `${host}/auth/registration`;
 
 // ссылка на сервер к login
-export const loginURL = "http://localhost:3001/auth/login";
+export const loginURL = `${host}/auth/login`;
 
 // ссылка на сервер к tovarList для работы на админке
-export const userListURL = "http://localhost:3001/admin/users";
+export const userListURL = `${host}/admin/users`;
 
 // ссылка на сервер к userList для работы на админке
-export const adminTovarListURL = "http://localhost:3001/admin/tovars";
+export const adminTovarListURL = `${host}/admin/tovars`;
 
 // Тема
 export const theme = false; // светлая - false, темная - true

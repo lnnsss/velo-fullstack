@@ -55,6 +55,7 @@
   border: 1px solid var(--grey);
   border-radius: 10px;
   padding: 10px;
+  background-color: inherit;
 }
 .form__point__button {
   display: flex;
@@ -126,9 +127,10 @@
   border-bottom: 2px solid var(--grey);
 }
 .content__element__input {
+  background-color: inherit;
   font-size: 20px;
   font-weight: 400;
-  width: 100%;
+  width: 90%;
 }
 .content__element__button {
   background-color: inherit;
@@ -138,6 +140,9 @@
   cursor: pointer;
 }
 .form__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40%;
   margin: 0 auto;
   background-color: inherit;
@@ -160,13 +165,35 @@
 
 /*----media---------------------------------*/
 
-@media (max-width: 1044px) {
+@media (max-width: 1140px) {
+  .addPage__form {
+    width: 95%;
+  }
 }
 
 @media (max-width: 768px) {
+  .addPage__form {
+    padding: 20px;
+  }
+  .content__element {
+    padding: 0px 10px;
+  }
 }
 
 @media (max-width: 472px) {
+  .addPage__form {
+    gap: 20px;
+  }
+  .form__dateAndLang {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form__dateAndLang__point {
+    width: 100%;
+  }
+  .form__point__title {
+    font-size: 20px;
+  }
 }
 
 /*----nightTheme---------------------------------*/
@@ -189,6 +216,7 @@
 .nightTheme input:-webkit-autofill,
 .nightTheme input:-webkit-autofill:hover,
 .nightTheme input:-webkit-autofill:focus {
+  background-color: var(--secondBlack);
   border: 1px solid inherit;
   -webkit-text-fill-color: var(--white);
   -webkit-box-shadow: 0 0 0px 1000px inherit inset;

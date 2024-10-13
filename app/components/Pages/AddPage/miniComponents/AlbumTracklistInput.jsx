@@ -75,12 +75,12 @@ function TrackInput({ id, trackTitle, handleDelTrack, handleNameTrack }) {
     <div className={s.content__element}>
       <input
         type="text"
-        className="content__element__input"
+        className={s.content__element__input}
         placeholder="title"
         value={trackTitle}
         onChange={handleNameTrack(id)}
       />
-      <button className="content__element__button" onClick={handleDelTrack(id)}>
+      <button className={s.content__element__button} onClick={handleDelTrack(id)}>
         -
       </button>
     </div>

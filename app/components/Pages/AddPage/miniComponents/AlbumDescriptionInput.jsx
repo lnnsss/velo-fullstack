@@ -78,13 +78,13 @@ function ParagraphInput({ id, text, handleDelParagraph, handleNameParagraph }) {
     <div className={s.content__element}>
       <input
         type="text"
-        className="content__element__input"
+        className={s.content__element__input}
         placeholder="paragraph"
         value={text}
         onChange={handleNameParagraph(id)}
       />
       <button
-        className="content__element__button"
+        className={s.content__element__button}
         onClick={handleDelParagraph(id)}
       >
         -

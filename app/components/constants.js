@@ -1,4 +1,4 @@
-const host = "https://velo-fullstack-back.vercel.app"; // http://localhost:3001
+const host = "http://localhost:3001";
 
 // Ссылка на сервер к tovarList
 export const tovarListURL = `${host}/tovars`;

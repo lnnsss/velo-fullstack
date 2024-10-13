@@ -1,24 +1,24 @@
-const host = "https://velo-fullstack-back.vercel.app"; //http://localhost:3001
+const host = "https://velo-fullstack-back.vercel.app"; // http://localhost:3001
 
-// ссылка на сервер к tovarList
+// Ссылка на сервер к tovarList
 export const tovarListURL = `${host}/tovars`;
 
-// ссылка на сервер к cartList
+// Ссылка на сервер к cartList
 export const cartListURL = `${host}/carts`;
 
 // ссылка на сервер к registration
 export const registrationURL = `${host}/auth/registration`;
 
-// ссылка на сервер к login
+// Ссылка на сервер к login
 export const loginURL = `${host}/auth/login`;
 
-// ссылка на сервер к tovarList для работы на админке
+// Ссылка на сервер к tovarList для работы на админке
 export const userListURL = `${host}/admin/users`;
 
-// ссылка на сервер к userList для работы на админке
+// Ссылка на сервер к userList для работы на админке
 export const adminTovarListURL = `${host}/admin/tovars`;
 
-// Тема
+// Тема по умолчанию
 export const theme = false; // светлая - false, темная - true
 
 // Фильтры для каталога
@@ -31,7 +31,7 @@ export const adminUsersFilterList = ["ALL", "USER", "ADMIN"];
 export const priceCondition = 35; // null или  цена (например: 40)
 
 // Условие языка релиза
-export const langCondition = ""; // "Ru", "En"
+export const langCondition = ""; // "" или"Ru", "En"
 
 // Скидка (%)
 export const discount = 20;

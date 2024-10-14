@@ -20,6 +20,11 @@ export function Form() {
   const [albumTracklist, setAlbumTracklist] = useState([]); // треклист
   const [albumDescription, setAlbumDescription] = useState([]); // о релизе
 
+  // универсальная функция изменения состояния в инпутах
+  const handleChange = (setter) => (e) => {
+    setter(e.target.value);
+  };
+
   // Начальные значения для очистки формы
   const emptyFormData = {
     title: "",
@@ -33,9 +38,17 @@ export function Form() {
     description: [],
   };
 
-  // универсальная функция изменения состояния в инпутах
-  const handleChange = (setter) => (e) => {
-    setter(e.target.value);
+  // функция проверки формата даты
+  const clearForm = () => {
+    setAlbumTitle(emptyFormData.title);
+    setAlbumArtist(emptyFormData.artist);
+    setAlbumPrice(emptyFormData.price);
+    setAlbumCoverLink(emptyFormData.img);
+    setAlbumYandexLink(emptyFormData.yandex);
+    setAlbumDate(emptyFormData.date);
+    setAlbumLang(emptyFormData.lang);
+    setAlbumTracklist(emptyFormData.trackList);
+    setAlbumDescription(emptyFormData.description);
   };
 
   // функция проверки формата даты
@@ -44,10 +57,9 @@ export function Form() {
     return dateString.match(regex) !== null;
   };
 
-  // функция отправки данных альбома
-  const handleFormSubmit = async (e) => {
-    e.preventDefault(); // Предотвращает перезагрузку страницы
-
+  // полная валидация
+  const validation = () => {
+    // Все ли поля заполнены?
     if (
       !albumTitle ||
       !albumArtist ||
@@ -56,11 +68,52 @@ export function Form() {
       !albumLang ||
       !albumTracklist ||
       !albumDescription ||
-      !isValidDate(albumDate)
+      !albumDate
     ) {
-      alert(
-        "Пожалуйста, заполните все обязательные поля и убедитесь, что дата в формате YYYY-MM-DD."
-      );
+      alert("Пожалуйста, заполните все обязательные поля.");
+      return false;
+    }
+
+    // Валидная ли дата?
+    if (!isValidDate(albumDate)) {
+      alert("Значение поля дата не валидное.");
+      return false;
+    }
+
+    // Добавлены ли треки?
+    if (albumTracklist.length < 2) {
+      alert("Добавьте хотябы 2 трека.");
+      return false;
+    }
+
+    // Добавлены ли абзацы?
+    if (albumDescription.length < 2) {
+      alert("Добавьте хотябы 2 абзаца.");
+      return false;
+    }
+
+    // Цена - число?
+    if (Number(albumPrice) + 0 !== Number(albumPrice)) {
+      alert(`Поле "цена" должно содержать числовое значение!`);
+      return false;
+    }
+
+    // Цена от 10$ до 100$?
+    if (Number(albumPrice) < 10 || Number(albumPrice) > 100) {
+      alert(`Цена должна быть от 10$ до 100$!`);
+      return false;
+    }
+
+    return true;
+  };
+
+  // функция отправки данных альбома
+  const handleFormSubmit = async (e) => {
+    e.preventDefault(); // Предотвращает перезагрузку страницы
+
+    const isValid = validation();
+
+    if (!isValid) {
       return;
     }
 
@@ -68,7 +121,7 @@ export function Form() {
       title: albumTitle,
       artist: albumArtist.split(", "),
       price: albumPrice,
-      img: [albumCoverLink],
+      img: albumCoverLink.split(", "),
       ...(albumYandexLink && { yandex: albumYandexLink }),
       date: new Date(albumDate).toISOString(),
       lang: albumLang,
@@ -93,15 +146,7 @@ export function Form() {
       alert("Данные успешно отправлены!");
 
       // Очистка формы после успешной отправки
-      setAlbumTitle(emptyFormData.title);
-      setAlbumArtist(emptyFormData.artist);
-      setAlbumPrice(emptyFormData.price);
-      setAlbumCoverLink(emptyFormData.img);
-      setAlbumYandexLink(emptyFormData.yandex);
-      setAlbumDate(emptyFormData.date);
-      setAlbumLang(emptyFormData.lang);
-      setAlbumTracklist(emptyFormData.trackList);
-      setAlbumDescription(emptyFormData.description);
+      clearForm();
     } catch (error) {
       console.error(error);
       alert("Произошла ошибка при отправке данных.");

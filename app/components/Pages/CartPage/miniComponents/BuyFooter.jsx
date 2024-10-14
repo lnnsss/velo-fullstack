@@ -18,7 +18,6 @@ export function BuyFooter() {
   }, [cartList]);
 
   if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     <div className={`${s.buyFooter} ${s._container}`}>

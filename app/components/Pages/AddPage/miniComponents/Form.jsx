@@ -140,7 +140,7 @@ export function Form() {
       });
 
       if (!response.ok) {
-        throw new Error("Ошибка. Попробуйте еще раз.");
+        throw new Error(". Попробуйте еще раз.");
       }
 
       alert("Данные успешно отправлены!");

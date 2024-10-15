@@ -1,4 +1,4 @@
-const host = "http://localhost:3001";
+const host = "http://185.103.101.164:3001"; // http://localhost:3001
 
 // Ссылка на сервер к tovarList
 export const tovarListURL = `${host}/tovars`;
